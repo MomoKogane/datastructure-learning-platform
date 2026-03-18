@@ -1,0 +1,45 @@
+{
+  "id": "4.4",
+  "title": "4.4 Threaded Binary Trees",
+  "subtitle": "Threading concept, traversal optimization, and extension-ready visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "Threaded binary trees replace null pointers with traversal threads to reduce auxiliary stack/recursion usage during traversal.",
+    "sections": [
+      {
+        "title": "4.4.1 Key Ideas and Model",
+        "content": "Define predecessor/successor threads and left-thread/right-thread tags. Explain threaded node semantics.",
+        "examples": [
+          "Mark null links as inorder predecessor/successor threads",
+          "Explain thread tag meaning in node fields",
+          "Differentiate normal child link from thread link"
+        ]
+      },
+      {
+        "title": "4.4.2 Representation and Workflow",
+        "content": "Describe threading construction based on inorder (or other orders) and how traversal follows threads efficiently.",
+        "examples": [
+          "Build inorder threads on a small binary tree",
+          "Traverse threaded tree without recursion",
+          "Handle insertion impact on nearby threads"
+        ]
+      },
+      {
+        "title": "4.4.3 Complexity and Practical Guidance",
+        "content": "Discuss traversal efficiency benefits, maintenance complexity during updates, and suitable application scenarios.",
+        "examples": [
+          "Compare traversal overhead with ordinary binary tree",
+          "Estimate update complexity in threaded structures",
+          "Use threading when traversal frequency dominates updates"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand thread links and tagging",
+      "Construct and traverse threaded trees correctly",
+      "Reduce traversal auxiliary storage needs",
+      "Recognize update-maintenance trade-offs",
+      "Apply threading in read-heavy traversal workflows"
+    ]
+  }
+}

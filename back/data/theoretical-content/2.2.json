@@ -1,0 +1,189 @@
+{
+  "id": "2.2",
+  "title": "2.2 Linked Lists",
+  "subtitle": "Singly, Doubly, and Circular Linked Lists",
+  "type": "theory",
+  "content": {
+    "introduction": "Linked lists are dynamic linear data structures where elements (nodes) are stored in arbitrary memory locations and connected through pointers. Unlike arrays, linked lists can grow or shrink during runtime and don't require contiguous memory allocation.",
+    "sections": [
+      {
+        "title": "2.2.1 Linked List Fundamentals",
+        "content": "Definition: A linked list is a linear data structure where elements are stored in nodes, and each node contains data and a reference (pointer) to the next node in the sequence.\n\nKey Characteristics:\n1) Dynamic Size allows the list to grow or shrink during program execution.\n2) Non-contiguous Memory means nodes can be stored anywhere in memory.\n3) Sequential Access requires traversing from the head to reach any element.\n4) Pointer-based Structure uses references to connect nodes together.\n\nNode Structure:\n1) Data Field stores the actual information (can be any data type).\n2) Next Pointer contains the memory address of the next node.\n3) Head Pointer points to the first node in the list.\n4) Tail Pointer (optional) points to the last node for efficiency.\n\nMemory Management:\n1) Dynamic Allocation uses malloc/new to allocate memory for new nodes.\n2) Deallocation requires explicit freeing of memory to prevent leaks.\n3) Fragmentation can occur due to non-contiguous allocation.\n4) Cache Performance may be lower than arrays due to memory locality.\n\nTypes of Linked Lists:\n1) Singly Linked List has nodes with one next pointer.\n2) Doubly Linked List has nodes with both next and previous pointers.\n3) Circular Linked List has the last node pointing back to the first.\n4) Multiply Linked List has nodes with multiple pointers for different purposes.",
+        "examples": [
+          "Node structure: struct Node { int data; Node* next; }",
+          "Singly linked list: [10|*] -> [20|*] -> [30|NULL]",
+          "Doubly linked list: NULL<-[*|10|*]<->[*|20|*]<->[*|30|*]->NULL",
+          "Circular linked list: [10|*] -> [20|*] -> [30|*] -> back to [10|*]"
+        ]
+      },
+      {
+        "title": "2.2.2 Singly Linked List Operations",
+        "content": "Basic Operations on Singly Linked Lists involve manipulation of nodes and pointers with careful attention to edge cases and memory management.\n\nInsertion Operations:\n1) Insert at Beginning creates a new node, sets its next to current head, and updates head pointer. Time complexity: O(1).\n2) Insert at End traverses to the last node, creates new node, and updates the last node's next pointer. Time complexity: O(n) without tail pointer, O(1) with tail pointer.\n3) Insert at Position requires traversal to the desired position, creating new node, and updating pointers. Time complexity: O(n).\n4) Insert After Given Node directly updates pointers without traversal. Time complexity: O(1).\n\nDeletion Operations:\n1) Delete from Beginning updates head to point to second node and frees first node. Time complexity: O(1).\n2) Delete from End requires traversal to second-last node, updates its next to NULL, and frees last node. Time complexity: O(n).\n3) Delete by Value searches for the node with given value and removes it. Time complexity: O(n).\n4) Delete by Position traverses to the position and removes the node. Time complexity: O(n).\n\nTraversal and Search:\n1) Linear Traversal visits each node from head to tail. Time complexity: O(n).\n2) Search for Value compares data in each node until found or end reached. Time complexity: O(n).\n3) Count Nodes traverses the entire list counting nodes. Time complexity: O(n).\n4) Display List prints all node values in sequence. Time complexity: O(n).\n\nEdge Cases:\n1) Empty List operations require null checks and proper initialization.\n2) Single Node operations need special handling for head updates.\n3) Memory Allocation failures should be handled gracefully.\n4) Invalid Position parameters should be validated before operations.",
+        "examples": [
+          "Insert at beginning: newNode->next = head; head = newNode;",
+          "Delete first node: temp = head; head = head->next; delete temp;",
+          "Search operation: while(current != NULL && current->data != value) current = current->next;",
+          "Traverse and print: while(current != NULL) { print(current->data); current = current->next; }"
+        ]
+      },
+      {
+        "title": "2.2.3 Doubly Linked Lists",
+        "content": "Doubly Linked Lists extend singly linked lists by adding a previous pointer to each node, enabling bidirectional traversal and more efficient operations.\n\nNode Structure:\n1) Data Field stores the actual information.\n2) Next Pointer points to the next node in forward direction.\n3) Previous Pointer points to the previous node in backward direction.\n4) Head and Tail pointers provide access to both ends of the list.\n\nAdvantages over Singly Linked Lists:\n1) Bidirectional Traversal allows movement in both directions.\n2) Efficient Deletion can be done in O(1) time when node reference is given.\n3) Better Insert Operations can insert before a given node efficiently.\n4) Reverse Traversal doesn't require recursion or additional storage.\n\nInsertion Operations:\n1) Insert at Beginning updates both head and the first node's previous pointer.\n2) Insert at End updates both tail and the last node's next pointer.\n3) Insert After Node updates four pointer connections for proper linking.\n4) Insert Before Node can be done efficiently using the previous pointer.\n\nDeletion Operations:\n1) Delete from Beginning updates head and second node's previous pointer.\n2) Delete from End updates tail and second-last node's next pointer.\n3) Delete Given Node updates both neighboring nodes' pointers.\n4) Memory Management requires freeing the deleted node.\n\nSpecial Considerations:\n1) Pointer Consistency requires updating both next and previous pointers.\n2) Memory Overhead is higher due to additional pointer per node.\n3) Edge Cases include operations on empty list and single node list.\n4) Circular Doubly Lists have additional complexity in pointer management.",
+        "examples": [
+          "Node structure: struct Node { int data; Node* next; Node* prev; }",
+          "Insert after node: newNode->next = node->next; newNode->prev = node; node->next->prev = newNode; node->next = newNode;",
+          "Delete node: node->prev->next = node->next; node->next->prev = node->prev; delete node;",
+          "Reverse traversal: while(current != NULL) { print(current->data); current = current->prev; }"
+        ]
+      },
+      {
+        "title": "2.2.4 Circular Linked Lists",
+        "content": "Circular Linked Lists are variations where the last node points back to the first node, creating a circular structure useful for round-robin scheduling and cyclic data processing.\n\nTypes of Circular Lists:\n1) Singly Circular List has the last node's next pointer pointing to the head.\n2) Doubly Circular List has both forward and backward circular connections.\n3) Header Node Circular List uses a dummy header node to simplify operations.\n4) Multi-level Circular Lists have nodes pointing to other circular lists.\n\nKey Properties:\n1) No NULL Pointers exist in a properly formed circular list.\n2) Infinite Traversal is possible without reaching a NULL pointer.\n3) Any Node can serve as a starting point for traversal.\n4) Memory Efficiency is similar to regular linked lists.\n\nOperations and Considerations:\n1) Traversal requires a stopping condition to avoid infinite loops.\n2) Insertion maintains the circular property by updating the last node.\n3) Deletion must handle the case when removing the node that external pointers reference.\n4) Empty List is represented by a NULL pointer or a self-pointing node.\n\nApplications:\n1) Round-Robin Scheduling in operating systems.\n2) Circular Buffers for data streaming and buffering.\n3) Game Development for turn-based systems.\n4) Music Playlists with repeat functionality.\n\nImplementation Strategies:\n1) Keep Track of List Size to aid in traversal and validation.\n2) Use Tail Pointer instead of head for easier insertion at both ends.\n3) Sentinel Nodes can simplify edge case handling.\n4) Careful Testing is needed to ensure circular property is maintained.",
+        "examples": [
+          "Singly circular: [10|*] -> [20|*] -> [30|*] -> back to [10|*]",
+          "Check if circular: Use Floyd's cycle detection algorithm",
+          "Insert in circular: newNode->next = tail->next; tail->next = newNode; tail = newNode;",
+          "Traverse circular: do { process(current); current = current->next; } while(current != start);"
+        ]
+      },
+      {
+        "title": "2.2.5 Applications and Use Cases",
+        "content": "Linked Lists are fundamental data structures with numerous practical applications in computer science and software development.\n\nSystem Programming Applications:\n1) Memory Management uses linked lists for free memory block tracking.\n2) Process Scheduling implements ready queues and wait queues.\n3) File System Organization maintains directory structures and file allocation.\n4) Device Drivers use linked lists for interrupt handling and buffer management.\n\nData Structure Implementation:\n1) Stack Implementation using linked lists provides dynamic sizing.\n2) Queue Implementation avoids the size limitations of array-based queues.\n3) Graph Representation uses adjacency lists with linked lists.\n4) Hash Table Chaining resolves collisions using linked lists.\n\nAlgorithm Applications:\n1) Polynomial Addition represents polynomials as linked lists of terms.\n2) Sparse Matrix Representation stores only non-zero elements.\n3) Undo Functionality in text editors and applications.\n4) Browser History maintains visited page sequences.\n\nAdvanced Applications:\n1) Garbage Collection algorithms use linked lists for object tracking.\n2) Symbol Tables in compilers organize identifier information.\n3) Expression Trees can be implemented using linked structures.\n4) Database Indexing uses linked structures for B-trees and other indices.\n\nPerformance Considerations:\n1) Memory Access Patterns affect cache performance compared to arrays.\n2) Dynamic Allocation provides flexibility but adds overhead.\n3) Pointer Traversal is sequential, limiting random access performance.\n4) Memory Fragmentation can occur with frequent allocation/deallocation.\n\nWhen to Use Linked Lists:\n1) Unknown or Variable Size data requirements.\n2) Frequent Insertion/Deletion operations, especially at the beginning.\n3) Implementation of Other Data Structures like stacks and queues.\n4) Memory is Fragmented or contiguous allocation is not possible.",
+        "examples": [
+          "Undo system: Each action stored as a node in a doubly linked list",
+          "Music playlist: Circular linked list for continuous play with repeat",
+          "Process scheduling: Ready queue implemented as a linked list",
+          "Polynomial: 3x^2 + 5x + 7 stored as [(3,2)] -> [(5,1)] -> [(7,0)]"
+        ]
+      }
+    ],
+    "quizQuestions": [
+      {
+        "id": "2.2-q1",
+        "type": "multiple-choice",
+        "question": "What is a core difference between linked lists and arrays?",
+        "options": [
+          "Linked lists require contiguous memory blocks",
+          "Arrays use pointers between every element",
+          "Linked list nodes can be stored in non-contiguous memory",
+          "Arrays can only store primitive data"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Linked list nodes are connected by pointers and do not require contiguous memory.",
+        "difficulty": "easy",
+        "topic": "2.2.1 Linked List Fundamentals"
+      },
+      {
+        "id": "2.2-q2",
+        "type": "true-false",
+        "question": "In a singly linked list, direct random access to the kth element is O(1).",
+        "correctAnswer": false,
+        "explanation": "This is false. Singly linked lists require sequential traversal from the head, so access is O(k) and O(n) in general.",
+        "difficulty": "easy",
+        "topic": "2.2.1 Linked List Fundamentals"
+      },
+      {
+        "id": "2.2-q3",
+        "type": "multiple-choice",
+        "question": "Which singly linked list operation is O(1) when implemented with only a head pointer?",
+        "options": [
+          "Insert at beginning",
+          "Insert at end",
+          "Delete by value",
+          "Search for a value"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Insert-at-beginning only updates the new node's next and head pointer, so it is constant time.",
+        "difficulty": "easy",
+        "topic": "2.2.2 Singly Linked List Operations"
+      },
+      {
+        "id": "2.2-q4",
+        "type": "multiple-choice",
+        "question": "Why can doubly linked lists support efficient deletion of a known node?",
+        "options": [
+          "They are always sorted",
+          "They store array indices in each node",
+          "Each node stores both next and previous pointers",
+          "They avoid dynamic memory allocation"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Given a node reference, previous and next pointers allow reconnecting neighbors in O(1).",
+        "difficulty": "medium",
+        "topic": "2.2.3 Doubly Linked Lists"
+      },
+      {
+        "id": "2.2-q5",
+        "type": "true-false",
+        "question": "A proper circular linked list has no NULL next pointer in the cycle.",
+        "correctAnswer": true,
+        "explanation": "This is true. The last node links back to a node in the list, usually the head.",
+        "difficulty": "medium",
+        "topic": "2.2.4 Circular Linked Lists"
+      },
+      {
+        "id": "2.2-q6",
+        "type": "multiple-choice",
+        "question": "Which application is commonly modeled with a circular linked list?",
+        "options": [
+          "Binary search in sorted arrays",
+          "Round-robin scheduling",
+          "Heap sort partitioning",
+          "Matrix multiplication"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Round-robin style processing naturally matches circular traversal behavior.",
+        "difficulty": "easy",
+        "topic": "2.2.4 Circular Linked Lists"
+      },
+      {
+        "id": "2.2-q7",
+        "type": "multiple-choice",
+        "question": "Compared with arrays, linked lists usually have which trade-off?",
+        "options": [
+          "Faster random access but slower insertions",
+          "Better cache locality and fixed-size storage",
+          "Slower random access but flexible insertions/deletions",
+          "No pointer overhead in memory"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Linked lists excel at structural updates but typically have poor random access and cache locality.",
+        "difficulty": "medium",
+        "topic": "2.2.5 Applications and Use Cases"
+      },
+      {
+        "id": "2.2-q8",
+        "type": "short-answer",
+        "question": "Name one common edge case that must be handled carefully in linked list operations.",
+        "correctAnswer": "Typical edge cases include operations on an empty list, a single-node list, or invalid positions.",
+        "explanation": "Robust linked list code checks boundary conditions such as empty/single-node states.",
+        "difficulty": "medium",
+        "topic": "2.2.2 Singly Linked List Operations"
+      }
+    ],
+    "keyTakeaways": [
+      "Linked lists provide dynamic memory allocation and flexible sizing",
+      "Different types serve different purposes: singly, doubly, and circular",
+      "Operations have different time complexities compared to arrays",
+      "Memory management and pointer manipulation are crucial skills",
+      "Choose the right type based on specific application requirements"
+    ],
+    "practiceProblems": [
+      {
+        "title": "Reverse a Linked List",
+        "difficulty": "Easy",
+        "description": "Write a function to reverse a singly linked list iteratively and recursively."
+      },
+      {
+        "title": "Detect Cycle in Linked List",
+        "difficulty": "Medium", 
+        "description": "Implement Floyd's cycle detection algorithm to detect if a linked list has a cycle."
+      },
+      {
+        "title": "Merge Two Sorted Lists",
+        "difficulty": "Easy",
+        "description": "Merge two sorted linked lists into one sorted linked list."
+      }
+    ]
+  }
+}

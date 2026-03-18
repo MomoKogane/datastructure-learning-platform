@@ -1,0 +1,45 @@
+{
+  "id": "4.2",
+  "title": "4.2 Tree Traversal",
+  "subtitle": "Preorder, inorder, postorder, and level-order traversal methods",
+  "type": "theory",
+  "content": {
+    "introduction": "Tree traversal defines systematic node visiting orders and is essential for analysis, serialization, and expression processing.",
+    "sections": [
+      {
+        "title": "4.2.1 Key Ideas and Model",
+        "content": "Define preorder, inorder, postorder, and level-order traversal goals. Explain how visit order changes interpretation.",
+        "examples": [
+          "List traversal orders for a small binary tree",
+          "Explain why inorder yields sorted output in BST",
+          "Map postorder to safe deletion order"
+        ]
+      },
+      {
+        "title": "4.2.2 Representation and Workflow",
+        "content": "Describe recursive and iterative implementations using stacks/queues. Show state transitions for each traversal type.",
+        "examples": [
+          "Implement iterative preorder with a stack",
+          "Implement level-order traversal with a queue",
+          "Handle null child checks consistently"
+        ]
+      },
+      {
+        "title": "4.2.3 Complexity and Practical Guidance",
+        "content": "Traversal is O(n) time; auxiliary space depends on recursion depth or explicit data structures. Discuss practical implementation choices.",
+        "examples": [
+          "Compare recursion depth on balanced vs skewed trees",
+          "Evaluate stack memory usage in DFS traversals",
+          "Choose traversal order by task objective"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand the meaning of major traversal orders",
+      "Implement recursive and iterative traversals",
+      "Reason about O(n) traversal cost",
+      "Select traversal by downstream task",
+      "Avoid common state-management errors"
+    ]
+  }
+}

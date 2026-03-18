@@ -1,0 +1,45 @@
+{
+  "id": "5.2.1",
+  "title": "5.2.1 Graph Traversal and Applications",
+  "subtitle": "Traversal goals, scenarios, and extension-ready visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "Graph traversal provides systematic node exploration patterns that support reachability, connectivity, and search tasks.",
+    "sections": [
+      {
+        "title": "5.2.1.1 Key Ideas and Model",
+        "content": "Define traversal goals and key differences between depth-first and breadth-first exploration strategies.",
+        "examples": [
+          "Check reachability between two nodes",
+          "Identify connected components conceptually",
+          "Contrast DFS path focus with BFS level focus"
+        ]
+      },
+      {
+        "title": "5.2.1.2 Representation and Workflow",
+        "content": "Describe generic traversal workflow including visited tracking, frontier management, and disconnected-graph handling.",
+        "examples": [
+          "Traverse a graph represented by adjacency list",
+          "Maintain visited state to avoid repetition",
+          "Cover disconnected components with repeated starts"
+        ]
+      },
+      {
+        "title": "5.2.1.3 Complexity and Practical Guidance",
+        "content": "Discuss complexity O(V+E), representation impacts, and practical criteria for choosing DFS or BFS.",
+        "examples": [
+          "Estimate traversal cost by number of edges",
+          "Use BFS for shortest hops, DFS for structure analysis",
+          "Pick storage to match sparsity and workload"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Frame graph traversal objectives clearly",
+      "Understand DFS and BFS at conceptual level",
+      "Implement traversal control with visited sets",
+      "Analyze traversal complexity in common representations",
+      "Choose method by task requirements"
+    ]
+  }
+}

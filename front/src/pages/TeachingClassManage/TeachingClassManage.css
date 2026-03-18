@@ -1,0 +1,36 @@
+.teaching-class-manage-container {
+  width: 100%;
+}
+
+.teaching-class-manage-layout {
+  min-height: 68vh;
+  background: transparent;
+}
+
+.teaching-class-manage-sider {
+  background: transparent !important;
+  margin-right: 16px;
+}
+
+.teaching-class-manage-content {
+  background: transparent;
+}
+
+.teaching-class-item-selected {
+  background-color: #e6f4ff;
+}
+
+.teaching-class-create-btn {
+  margin-top: 12px;
+}
+
+.teaching-class-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.teaching-class-rename-input {
+  width: 200px;
+}

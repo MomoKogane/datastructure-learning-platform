@@ -1,0 +1,45 @@
+{
+  "id": "2.3",
+  "title": "2.3 Stacks",
+  "subtitle": "LIFO operations, implementations, and applications",
+  "type": "theory",
+  "content": {
+    "introduction": "Stacks implement the Last-In-First-Out (LIFO) discipline and are widely used for expression evaluation, function call management, and backtracking.",
+    "sections": [
+      {
+        "title": "2.3.1 Key Ideas and Model",
+        "content": "Define stack ADT operations (push, pop, top, isEmpty), LIFO ordering, and underflow/overflow conditions. Explain why stack behavior naturally models nested structures.",
+        "examples": [
+          "Validate balanced parentheses in an expression",
+          "Model browser back navigation with LIFO behavior",
+          "Explain call-stack growth during recursive function calls"
+        ]
+      },
+      {
+        "title": "2.3.2 Representation and Workflow",
+        "content": "Describe array-based and linked-list-based stack implementations. Walk through push/pop state changes and show how parentheses matching and DFS-style backtracking use stacks.",
+        "examples": [
+          "Push sequence: 3, 5, 2 then pop twice and report top",
+          "Use a stack to convert infix to postfix notation",
+          "Demonstrate underflow handling on empty pop"
+        ]
+      },
+      {
+        "title": "2.3.3 Complexity and Practical Guidance",
+        "content": "Stack push/pop/top are O(1), while traversal is O(n). Compare fixed-capacity array stacks against dynamic linked stacks for performance and memory behavior.",
+        "examples": [
+          "Compare array stack and linked stack in cache locality",
+          "Estimate memory overhead per node in linked stacks",
+          "Choose stack when only top-end operations are required"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Master the stack ADT and LIFO semantics",
+      "Implement stack with arrays or linked nodes",
+      "Use stacks for nested-structure and undo-style problems",
+      "Evaluate O(1) operation costs and boundary checks",
+      "Select implementation by capacity and memory constraints"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "3.2.2",
+  "title": "3.2.2 BF Brute Force Algorithm",
+  "subtitle": "Matching process and complexity analysis, reserved for future visualization",
+  "type": "theory",
+  "content": {
+    "introduction": "The BF (Brute Force) algorithm compares the pattern at each possible text offset and is the simplest baseline for exact string matching.",
+    "sections": [
+      {
+        "title": "3.2.2.1 Key Ideas and Model",
+        "content": "Define BF matching pointers and mismatch behavior. Explain why BF restarts comparisons from the next text position after mismatch.",
+        "examples": [
+          "Match pattern \"abc\" in text \"zzabczz\"",
+          "Show repeated comparisons in \"aaaaab\" vs \"aaab\"",
+          "Use BF as a correctness baseline in tests"
+        ]
+      },
+      {
+        "title": "3.2.2.2 Representation and Workflow",
+        "content": "Walk through the character-by-character process, including offset updates, restart logic, and match completion criteria.",
+        "examples": [
+          "Trace i and j pointer updates after mismatch",
+          "Find first and all matches by continuing scan",
+          "Handle empty pattern and short text edge cases"
+        ]
+      },
+      {
+        "title": "3.2.2.3 Complexity and Practical Guidance",
+        "content": "BF has worst-case O(nm), best-case near O(n) with early mismatches, and O(1) extra space. Discuss when this simplicity is acceptable.",
+        "examples": [
+          "Estimate BF cost on repetitive text",
+          "Compare BF with KMP for long inputs",
+          "Prefer BF for tiny inputs or quick prototypes"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand BF offset-by-offset matching",
+      "Implement BF pointer movement correctly",
+      "Evaluate BF worst-case performance risks",
+      "Use BF for baseline validation and teaching",
+      "Know when to switch to linear-time matching"
+    ]
+  }
+}

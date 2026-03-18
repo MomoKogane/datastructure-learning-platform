@@ -1,0 +1,45 @@
+{
+  "id": "5.4.2",
+  "title": "5.4.2 Prim Algorithm",
+  "subtitle": "Greedy tree expansion for minimum spanning tree",
+  "type": "theory",
+  "content": {
+    "introduction": "Prim builds an MST by repeatedly adding the minimum-weight edge that expands the current tree to a new vertex.",
+    "sections": [
+      {
+        "title": "5.4.2.1 Key Ideas and Model",
+        "content": "Define the growing-tree invariant and edge-cut selection rule in Prim's greedy strategy.",
+        "examples": [
+          "Explain why Prim never forms cycles in growth process",
+          "Define key[v] as best crossing edge weight",
+          "Contrast Prim growth with Kruskal edge-sorting"
+        ]
+      },
+      {
+        "title": "5.4.2.2 Representation and Workflow",
+        "content": "Describe priority-queue or array-key implementation: initialize start vertex, update candidate edge keys, and expand tree.",
+        "examples": [
+          "Run Prim from vertex A on a weighted graph",
+          "Update key and parent after each selection",
+          "Output final MST edge set and total weight"
+        ]
+      },
+      {
+        "title": "5.4.2.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(E log V) with heap and adjacency list, or O(V^2) with matrix; discuss graph-density suitability.",
+        "examples": [
+          "Compare heap-based and matrix-based Prim",
+          "Prefer matrix Prim on dense small graphs",
+          "Use Prim for incremental network expansion scenarios"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand Prim growing-tree mechanism",
+      "Implement key updates and vertex selection",
+      "Guarantee MST correctness with cut property",
+      "Analyze complexity by data structure choice",
+      "Apply Prim effectively on weighted undirected graphs"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "4.10",
+  "title": "4.10 Heap",
+  "subtitle": "Heap structure, priority queue operations, and heapify",
+  "type": "theory",
+  "content": {
+    "introduction": "Heap is a complete binary tree that satisfies a global order constraint between parent and child nodes. It is a core structure for priority queues, task scheduling, top-k queries, and graph algorithms like Dijkstra and Prim.",
+    "sections": [
+      {
+        "title": "4.10.1 Definition and Core Properties",
+        "content": "A heap is a complete binary tree:\n1) All levels except possibly the last are full.\n2) Last level is filled from left to right.\n\nHeap-order property:\n- Max-heap: parent >= children.\n- Min-heap: parent <= children.\n\nBecause of completeness, heap is naturally stored in an array and does not require explicit pointers.",
+        "examples": [
+          "Max-heap root is always the current maximum",
+          "Min-heap root is always the current minimum",
+          "Complete-tree shape makes index-based navigation possible"
+        ]
+      },
+      {
+        "title": "4.10.2 Array Representation and Index Rules",
+        "content": "For 0-based arrays:\n- Parent index of i: (i - 1) / 2 \n- Left child of i: 2i + 1\n- Right child of i: 2i + 2\n\nAdvantages:\n- O(1) access to parent and children by index formula.\n- Better cache locality than pointer-based trees.\n\nBoundary checks are essential when child index exceeds array length.",
+        "examples": [
+          "Node at index 3 has parent index 1",
+          "Node at index 2 has children indices 5 and 6",
+          "Array [50, 30, 40, 10, 20, 35] is a valid max-heap"
+        ]
+      },
+      {
+        "title": "4.10.3 Fundamental Heap Operations",
+        "content": "1) Insert (push): append element to tail, then sift-up until heap property is restored.\n2) Extract-top (pop): remove root, move last element to root, then sift-down.\n3) Peek: read root directly.\n4) Heapify build: build heap from an unsorted array bottom-up.\n\nComplexities:\n- Insert: O(log n)\n- Extract-top: O(log n)\n- Peek: O(1)\n- Build heap (bottom-up): O(n)",
+        "examples": [
+          "Insert 60 into max-heap and move it upward by swaps",
+          "Pop max value then sink replacement element down",
+          "Build heap faster with bottom-up heapify than repeated insert"
+        ]
+      },
+      {
+        "title": "4.10.4 Typical Applications and Comparison",
+        "content": "Typical scenarios:\n- Priority queues (task scheduling, event simulation).\n- Top-k and streaming extremes.\n- Heap sort.\n- Support structures in Dijkstra/Prim.\n\nComparison notes:\n- Compared with balanced BST, heap gives faster top access but does not support ordered traversal efficiently.\n- Compared with unsorted arrays, heap significantly improves repeated top extraction.",
+        "examples": [
+          "Real-time scheduler picks highest-priority job from heap",
+          "Top-100 hot items maintained with a fixed-size min-heap",
+          "Heap sort uses max-heap to produce ascending order"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Heap combines complete-tree shape with parent-child order constraints",
+      "Array representation makes heap operations simple and efficient",
+      "Sift-up and sift-down are the core maintenance procedures",
+      "Build-heap can be done in linear time O(n)",
+      "Heap is the standard implementation base for priority queues"
+    ]
+  }
+}

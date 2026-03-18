@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-02-28T17:31:04.845Z",
+  "assumptions": [
+    "Static import graph from declared runtime entries",
+    "Dynamic path imports and tool-only files may be false positives"
+  ],
+  "entries": {
+    "front": [
+      "front/src/main.tsx"
+    ],
+    "back": [
+      "back/src/index.ts",
+      "back/src/index-minimal.ts",
+      "back/src/index-clean.ts",
+      "back/src/test-server.ts"
+    ]
+  },
+  "counts": {
+    "frontAll": 115,
+    "frontUnused": 22,
+    "backAll": 21,
+    "backUnused": 5,
+    "rootCandidates": 9
+  },
+  "frontUnused": [
+    "front/src/App.css",
+    "front/src/components/DataStructureIntro/DataStructureIntro.tsx",
+    "front/src/data/structures/array/examples.json",
+    "front/src/data/structures/array/index.json",
+    "front/src/data/structures/array/practice.json",
+    "front/src/data/structures/array/theory.json",
+    "front/src/data/structures/array/visualization.json",
+    "front/src/data/structures/index.ts",
+    "front/src/hooks/useDataStructuresManager.ts",
+    "front/src/pages/1.TheorySection/TheorySection.css",
+    "front/src/pages/2.LinearSection/ArraySection/ArraySection.css",
+    "front/src/pages/2.LinearSection/ArraySection/ArraySection2.css",
+    "front/src/pages/2.LinearSection/LinkedListSection/LinkedListSection.css",
+    "front/src/pages/2.LinearSection/LinkedListSection/LinkedListSectionV1.css",
+    "front/src/pages/2.LinearSection/LinkedListSection/LinkedListSectionV1.tsx",
+    "front/src/pages/2.LinearSection/LinkedListSection/LinkedListVisualization.tsx",
+    "front/src/pages/2.LinearSection/QueueSection/QueueSection.tsx",
+    "front/src/pages/2.LinearSection/StackSection/StackSection.tsx",
+    "front/src/pages/3.StringSection/TheorySection.css",
+    "front/src/types/dataStructureContent.ts",
+    "front/src/utils/dataStructureLoader.ts",
+    "front/src/vite-env.d.ts"
+  ],
+  "backUnused": [
+    "back/src/data/minimalData.ts",
+    "back/src/utils/initMongoFromMinimal.ts",
+    "back/src/utils/seedDatabase.ts",
+    "back/src/utils/seedQuizBankFromTheoryFiles.ts",
+    "back/src/utils/seedQuizBankSample.ts"
+  ],
+  "rootCandidates": [
+    "analyze-unused.mjs",
+    "api-test.html",
+    "debug-api.js",
+    "linked-list-test.html",
+    "test-api.html",
+    "test-cors.js",
+    "test-integration.js",
+    "test-menu-integration.js",
+    "verification-test.js"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "6.2",
+  "title": "6.2 Binary Search",
+  "subtitle": "Binary search algorithm and variants",
+  "type": "theory",
+  "content": {
+    "introduction": "Binary search finds targets in sorted sequences by repeatedly halving the search interval.",
+    "sections": [
+      {
+        "title": "6.2.1 Key Ideas and Model",
+        "content": "Define sorted-order prerequisite, low/high boundaries, and midpoint decision invariant.",
+        "examples": [
+          "Explain why unsorted arrays break binary search correctness",
+          "Define lower-bound and upper-bound variants",
+          "Contrast exact search with insertion-position search"
+        ]
+      },
+      {
+        "title": "6.2.2 Representation and Workflow",
+        "content": "Describe iterative and recursive workflows, including boundary updates and duplicate-handling variants.",
+        "examples": [
+          "Trace search for value 23 in a sorted array",
+          "Update low/high for each midpoint comparison",
+          "Implement first-occurrence binary search variant"
+        ]
+      },
+      {
+        "title": "6.2.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(log n) time and O(1) space iteratively. Discuss common boundary bugs and prevention patterns.",
+        "examples": [
+          "Compare binary and linear search on large n",
+          "Avoid overflow with mid = low + (high-low)/2",
+          "Use binary search for sorted static datasets"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand binary search invariants",
+      "Implement safe boundary updates",
+      "Use variant forms for first/last occurrence",
+      "Achieve logarithmic lookup performance",
+      "Enforce sorted-input precondition consistently"
+    ]
+  }
+}

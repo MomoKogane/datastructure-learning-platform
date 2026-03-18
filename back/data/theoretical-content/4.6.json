@@ -1,0 +1,45 @@
+{
+  "id": "4.6",
+  "title": "4.6 AVL Trees",
+  "subtitle": "AVL balancing principles and rotations (original AVL part + expanded content)",
+  "type": "theory",
+  "content": {
+    "introduction": "AVL trees enforce strict height balance to guarantee logarithmic-time dynamic set operations.",
+    "sections": [
+      {
+        "title": "4.6.1 Key Ideas and Model",
+        "content": "Define balance factor and AVL constraint (|balance| <= 1). Explain why local rotations restore global balance.",
+        "examples": [
+          "Compute balance factors for each node",
+          "Identify imbalance type from insertion path",
+          "Explain single vs double rotation selection"
+        ]
+      },
+      {
+        "title": "4.6.2 Representation and Workflow",
+        "content": "Describe LL, RR, LR, and RL rotations triggered by insertion/deletion imbalance cases.",
+        "examples": [
+          "Perform LL rotation after descending inserts",
+          "Perform LR rotation and verify inorder order preserved",
+          "Update heights after each rotation"
+        ]
+      },
+      {
+        "title": "4.6.3 Complexity and Practical Guidance",
+        "content": "AVL guarantees O(log n) search/insert/delete with extra rotation maintenance; compare with less strict balancing schemes.",
+        "examples": [
+          "Compare AVL lookup speed to Red-Black under read-heavy load",
+          "Estimate rotation overhead for update-heavy workloads",
+          "Choose AVL when search latency is critical"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand AVL balance invariant",
+      "Detect imbalance patterns accurately",
+      "Apply single/double rotations correctly",
+      "Maintain heights and factors after updates",
+      "Use AVL for predictable logarithmic operations"
+    ]
+  }
+}

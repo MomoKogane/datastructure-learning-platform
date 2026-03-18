@@ -1,0 +1,48 @@
+.personal-space-container {
+  width: 100%;
+}
+
+.personal-space-layout {
+  background: transparent;
+  min-height: 68vh;
+}
+
+.personal-space-sider {
+  background: #fff !important;
+  border-radius: 8px;
+}
+
+.personal-space-content {
+  margin-left: 16px;
+}
+
+.class-layout {
+  background: transparent !important;
+}
+
+.class-sider {
+  background: transparent !important;
+  margin-right: 16px;
+}
+
+.class-item-selected {
+  background-color: #e6f4ff;
+}
+
+.favorite-cancel-btn,
+.favorite-cancel-btn:hover,
+.favorite-cancel-btn:focus,
+.favorite-cancel-btn:active {
+  background: #ffffff !important;
+  color: #ff4d4f !important;
+  border: 1px solid #ff4d4f !important;
+  box-shadow: none !important;
+}
+
+.teaching-setting-card {
+  min-height: 132px;
+}
+
+.teaching-setting-modal-header-row {
+  margin-top: 4px;
+}

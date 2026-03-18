@@ -1,0 +1,45 @@
+{
+  "id": "7.5",
+  "title": "7.5 Quick Sort",
+  "subtitle": "Partition and recurse with pivot",
+  "type": "theory",
+  "content": {
+    "introduction": "Quick sort partitions data around a pivot and recursively sorts subarrays, often delivering excellent practical performance.",
+    "sections": [
+      {
+        "title": "7.5.1 Key Ideas and Model",
+        "content": "Define partition invariant and pivot role in separating less-than and greater-than regions.",
+        "examples": [
+          "Explain pivot-choice impact on partition quality",
+          "Contrast Hoare and Lomuto partition behavior",
+          "Show instability under equal-key movement"
+        ]
+      },
+      {
+        "title": "7.5.2 Representation and Workflow",
+        "content": "Describe partition schemes (Lomuto/Hoare), recursive decomposition, and tail recursion optimization ideas.",
+        "examples": [
+          "Trace quick sort on [8,3,1,7,0,10,2]",
+          "Record pivot final index after partition",
+          "Apply recursion on left and right segments"
+        ]
+      },
+      {
+        "title": "7.5.3 Complexity and Practical Guidance",
+        "content": "Average complexity is O(n log n), worst-case O(n^2), with O(log n) expected recursion stack depth.",
+        "examples": [
+          "Use randomized pivot to reduce worst-case risk",
+          "Switch to insertion sort on tiny partitions",
+          "Choose quick sort for fast in-memory general sorting"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand partition-driven divide-and-conquer",
+      "Implement robust partition routines",
+      "Balance average efficiency and worst-case risk",
+      "Use pivot strategies to improve stability of runtime",
+      "Apply quick sort effectively in practice"
+    ]
+  }
+}

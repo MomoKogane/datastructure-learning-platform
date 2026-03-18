@@ -1,0 +1,45 @@
+{
+  "id": "2.4",
+  "title": "2.4 Queues",
+  "subtitle": "FIFO operations, circular queues, and applications",
+  "type": "theory",
+  "content": {
+    "introduction": "Queues implement First-In-First-Out (FIFO) ordering and are central to scheduling, buffering, and breadth-first exploration.",
+    "sections": [
+      {
+        "title": "2.4.1 Key Ideas and Model",
+        "content": "Define queue ADT operations (enqueue, dequeue, front, isEmpty), FIFO semantics, and typical overflow/underflow conditions.",
+        "examples": [
+          "Model a print queue with arrival order preserved",
+          "Explain customer-service ticket processing as FIFO",
+          "Differentiate queue from stack by service order"
+        ]
+      },
+      {
+        "title": "2.4.2 Representation and Workflow",
+        "content": "Explain linear queue, circular queue, and linked queue representations. Show pointer/index movement and why circular queues avoid wasted front space.",
+        "examples": [
+          "Trace enqueue 10,20,30 then dequeue twice",
+          "Show wrap-around in a circular queue of capacity 5",
+          "Use queue in BFS level-order traversal"
+        ]
+      },
+      {
+        "title": "2.4.3 Complexity and Practical Guidance",
+        "content": "Queue enqueue/dequeue/front are O(1) in proper implementations. Compare array circular queues with linked queues for throughput, memory overhead, and resizing behavior.",
+        "examples": [
+          "Compare queue implementations under bursty traffic",
+          "Estimate extra memory of node pointers in linked queues",
+          "Prefer circular array for bounded high-throughput buffers"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand queue ADT and FIFO guarantees",
+      "Implement and reason about circular queue indices",
+      "Apply queues to BFS and scheduling pipelines",
+      "Analyze constant-time queue operations",
+      "Choose representation based on capacity and workload"
+    ]
+  }
+}

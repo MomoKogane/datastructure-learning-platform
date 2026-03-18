@@ -1,0 +1,45 @@
+{
+  "id": "5.1",
+  "title": "5.1 Graph Fundamentals",
+  "subtitle": "Graph concepts, terminology, and storage methods",
+  "type": "theory",
+  "content": {
+    "introduction": "Graph fundamentals model pairwise relationships and provide the basis for routing, dependency, and network optimization algorithms.",
+    "sections": [
+      {
+        "title": "5.1.1 Key Ideas and Model",
+        "content": "Define vertices, edges, directed/undirected graphs, weighted graphs, and common structural terminology.",
+        "examples": [
+          "Represent a social network as an undirected graph",
+          "Model road map distances with weighted edges",
+          "Identify in-degree and out-degree in a directed graph"
+        ]
+      },
+      {
+        "title": "5.1.2 Representation and Workflow",
+        "content": "Describe adjacency matrix and adjacency list representations, including trade-offs for sparse vs dense graphs.",
+        "examples": [
+          "Build adjacency list for a sparse graph",
+          "Build adjacency matrix for a dense graph",
+          "Convert edge list to chosen storage format"
+        ]
+      },
+      {
+        "title": "5.1.3 Complexity and Practical Guidance",
+        "content": "Discuss algorithmic implications of graph density and representation choice for traversal and path computations.",
+        "examples": [
+          "Compare memory cost of matrix vs list",
+          "Estimate traversal performance on sparse inputs",
+          "Pick representation based on workload characteristics"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Master graph terminology and models",
+      "Choose suitable graph representation",
+      "Relate density to memory and runtime cost",
+      "Prepare for traversal and shortest-path algorithms",
+      "Apply graph modeling to real systems"
+    ]
+  }
+}

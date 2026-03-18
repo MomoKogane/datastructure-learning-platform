@@ -1,0 +1,45 @@
+{
+  "id": "3.2.3",
+  "title": "3.2.3 KMP Algorithm",
+  "subtitle": "Prefix table and optimized matching, reserved for visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "KMP improves exact matching by using prefix information to avoid redundant comparisons after mismatches.",
+    "sections": [
+      {
+        "title": "3.2.3.1 Key Ideas and Model",
+        "content": "Define longest proper prefix-suffix (LPS/next) and explain how it preserves matched information across mismatches.",
+        "examples": [
+          "Build LPS for pattern \"ABABCABAB\"",
+          "Explain fallback from mismatch using LPS value",
+          "Show why re-checking matched prefix is avoided"
+        ]
+      },
+      {
+        "title": "3.2.3.2 Representation and Workflow",
+        "content": "Describe two phases: building LPS in O(m), then scanning text in O(n) by moving pattern index via LPS instead of full reset.",
+        "examples": [
+          "Trace KMP on text \"ABABDABACDABABCABAB\"",
+          "Report all match indices by continuing after a match",
+          "Handle mismatch when j is zero vs non-zero"
+        ]
+      },
+      {
+        "title": "3.2.3.3 Complexity and Practical Guidance",
+        "content": "Total complexity is O(n + m) with O(m) extra space. Discuss why KMP is stable on repetitive inputs where BF degrades.",
+        "examples": [
+          "Compare KMP and BF under repetitive text",
+          "Estimate memory overhead of the LPS array",
+          "Use KMP for predictable performance in search-heavy services"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand LPS meaning and construction",
+      "Execute KMP matching transitions correctly",
+      "Guarantee linear-time matching behavior",
+      "Apply KMP to large-scale exact search tasks",
+      "Compare preprocessing cost against runtime gains"
+    ]
+  }
+}

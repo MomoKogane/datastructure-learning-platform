@@ -1,0 +1,34 @@
+.visualization-container {
+  width: 100%;
+}
+
+.visualization-controls {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 6px;
+}
+
+.canvas-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.operation-info {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  border-radius: 6px;
+}
+
+.visualization-speed-control {
+  margin-top: 16px;
+  width: 240px;
+}
+
+.visualization-canvas {
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  max-width: 100%;
+}

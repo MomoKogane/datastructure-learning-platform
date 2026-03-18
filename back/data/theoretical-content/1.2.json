@@ -1,0 +1,41 @@
+{
+  "id": "1.2",
+  "title": "1.2 Complexity Analysis",
+  "subtitle": "Time and space complexity, Big O notation",
+  "type": "theory",
+  "content": {
+    "introduction": "Complexity analysis helps estimate how algorithm performance scales with input size using time and space measures.",
+    "sections": [
+      {
+        "title": "Time Complexity",
+        "content": "Time complexity describes how runtime grows with input size. Common classes include O(1), O(log n), O(n), O(n log n), and O(n^2).",
+        "examples": [
+          "Array access is O(1)",
+          "Binary search is O(log n)",
+          "Merge sort is O(n log n)"
+        ]
+      },
+      {
+        "title": "Space Complexity",
+        "content": "Space complexity measures additional memory required. Some algorithms trade extra memory for speed.",
+        "examples": [
+          "In-place sorts use O(1) extra space",
+          "Merge sort requires O(n) extra space"
+        ]
+      },
+      {
+        "title": "Big O Notation",
+        "content": "Big O gives an upper bound on growth rate, focusing on large inputs and ignoring constants.",
+        "examples": [
+          "O(n^2) dominates O(n)",
+          "O(n log n) grows slower than O(n^2)"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Complexity helps compare algorithm scalability",
+      "Time and space are the main resources considered",
+      "Big O focuses on asymptotic behavior"
+    ]
+  }
+}

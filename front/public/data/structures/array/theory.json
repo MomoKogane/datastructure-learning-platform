@@ -1,0 +1,244 @@
+{
+  "title": "Array Data Structure",
+  "description": "Arrays are one of the most fundamental data structures in computer science. They store elements of the same type in contiguous memory locations, allowing for efficient random access using indices. Arrays form the foundation for many other data structures and algorithms.",
+  "sections": [
+    {
+      "title": "Key Features",
+      "type": "card",
+      "content": [
+        {
+          "feature": "Fixed Size",
+          "description": "Most arrays have a predetermined size that cannot be changed during runtime"
+        },
+        {
+          "feature": "Homogeneous",
+          "description": "All elements are of the same data type, ensuring consistent memory usage"
+        },
+        {
+          "feature": "Indexed",
+          "description": "Elements are accessed using numerical indices starting from 0"
+        },
+        {
+          "feature": "Contiguous",
+          "description": "Elements are stored in adjacent memory locations for cache efficiency"
+        },
+        {
+          "feature": "Zero-based indexing",
+          "description": "First element is at index 0, last at index n-1"
+        }
+      ]
+    },
+    {
+      "title": "Time Complexity",
+      "type": "card",
+      "content": [
+        {
+          "operation": "Access",
+          "complexity": "O(1)",
+          "description": "Direct index access using base address + offset"
+        },
+        {
+          "operation": "Search",
+          "complexity": "O(n)",
+          "description": "Linear search required for unsorted arrays"
+        },
+        {
+          "operation": "Insertion",
+          "complexity": "O(n)",
+          "description": "May require shifting elements to make space"
+        },
+        {
+          "operation": "Deletion",
+          "complexity": "O(n)",
+          "description": "May require shifting elements to fill gaps"
+        },
+        {
+          "operation": "Update",
+          "complexity": "O(1)",
+          "description": "Direct modification at known index"
+        }
+      ]
+    },
+    {
+      "title": "Common Uses",
+      "type": "card",
+      "content": [
+        {
+          "use": "Lists",
+          "description": "Storing ordered collections of similar items"
+        },
+        {
+          "use": "Matrices",
+          "description": "2D arrays for mathematical computations"
+        },
+        {
+          "use": "Buffers",
+          "description": "Temporary data storage in I/O operations"
+        },
+        {
+          "use": "Lookup Tables",
+          "description": "Fast data retrieval using index mapping"
+        },
+        {
+          "use": "Stacks/Queues",
+          "description": "Implementation base for other data structures"
+        }
+      ]
+    },
+    {
+      "title": "Memory Layout & Addressing",
+      "type": "card",
+      "content": [
+        {
+          "concept": "Address Calculation",
+          "formula": "B + (i ¡Á element_size)",
+          "description": "For an array starting at base address B, element at index i is located at this address"
+        },
+        {
+          "concept": "Cache Locality",
+          "description": "Contiguous memory layout improves cache performance"
+        },
+        {
+          "concept": "Memory Efficiency",
+          "description": "No extra memory overhead for pointers"
+        },
+        {
+          "concept": "Predictable Access",
+          "description": "Hardware can optimize memory prefetching"
+        },
+        {
+          "concept": "Alignment",
+          "description": "Elements aligned to word boundaries for optimal access"
+        }
+      ]
+    },
+    {
+      "title": "Types of Arrays",
+      "type": "card",
+      "content": [
+        {
+          "type": "Static Arrays",
+          "description": "Fixed size determined at compile time"
+        },
+        {
+          "type": "Dynamic Arrays",
+          "description": "Size can be modified at runtime (vectors, lists)"
+        },
+        {
+          "type": "Multi-dimensional",
+          "description": "Arrays of arrays (matrices, tensors)"
+        },
+        {
+          "type": "Jagged Arrays",
+          "description": "Arrays with varying row lengths"
+        },
+        {
+          "type": "Sparse Arrays",
+          "description": "Optimized for arrays with many empty elements"
+        },
+        {
+          "type": "Circular Arrays",
+          "description": "End connects back to beginning"
+        }
+      ]
+    },
+    {
+      "title": "Advantages vs Disadvantages",
+      "type": "comparison",
+      "advantages": [
+        {
+          "title": "Fast Access",
+          "description": "O(1) random access to any element"
+        },
+        {
+          "title": "Memory Efficient",
+          "description": "Minimal memory overhead"
+        },
+        {
+          "title": "Cache Friendly",
+          "description": "Excellent cache locality for sequential access"
+        },
+        {
+          "title": "Simple Implementation",
+          "description": "Easy to understand and implement"
+        },
+        {
+          "title": "Hardware Support",
+          "description": "Direct CPU instruction support"
+        },
+        {
+          "title": "Iteration Performance",
+          "description": "Excellent for loops and traversals"
+        }
+      ],
+      "disadvantages": [
+        {
+          "title": "Fixed Size",
+          "description": "Cannot easily resize in most implementations"
+        },
+        {
+          "title": "Expensive Insertion/Deletion",
+          "description": "Requires shifting elements"
+        },
+        {
+          "title": "Memory Waste",
+          "description": "Unused allocated space in partially filled arrays"
+        },
+        {
+          "title": "Type Limitation",
+          "description": "All elements must be the same type"
+        },
+        {
+          "title": "No Built-in Bounds Checking",
+          "description": "Risk of buffer overflows"
+        },
+        {
+          "title": "Poor for Frequent Modifications",
+          "description": "Inefficient for dynamic operations"
+        }
+      ]
+    },
+    {
+      "title": "Array vs Other Data Structures",
+      "type": "comparison_table",
+      "comparisons": [
+        {
+          "structure": "Array",
+          "access": "O(1)",
+          "search": "O(n)",
+          "insertion": "O(n)",
+          "deletion": "O(n)",
+          "memory": "Excellent",
+          "use_case": "Known size, frequent access"
+        },
+        {
+          "structure": "Linked List",
+          "access": "O(n)",
+          "search": "O(n)",
+          "insertion": "O(1)",
+          "deletion": "O(1)",
+          "memory": "Good",
+          "use_case": "Frequent insertions/deletions"
+        },
+        {
+          "structure": "Hash Table",
+          "access": "O(1)*",
+          "search": "O(1)*",
+          "insertion": "O(1)*",
+          "deletion": "O(1)*",
+          "memory": "Fair",
+          "use_case": "Key-value mappings"
+        },
+        {
+          "structure": "Binary Tree",
+          "access": "O(log n)",
+          "search": "O(log n)",
+          "insertion": "O(log n)",
+          "deletion": "O(log n)",
+          "memory": "Good",
+          "use_case": "Sorted data, range queries"
+        }
+      ]
+    }
+  ]
+}

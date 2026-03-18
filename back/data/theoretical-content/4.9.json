@@ -1,0 +1,45 @@
+{
+  "id": "4.9",
+  "title": "4.9 Huffman Trees",
+  "subtitle": "Optimal binary trees, coding applications, and expanded follow-up topics",
+  "type": "theory",
+  "content": {
+    "introduction": "Huffman trees produce prefix-free variable-length codes that minimize expected encoding length for known symbol frequencies.",
+    "sections": [
+      {
+        "title": "4.9.1 Key Ideas and Model",
+        "content": "Define weighted path length, prefix-free coding, and optimality objective in Huffman construction.",
+        "examples": [
+          "Compute weighted path length for a simple code tree",
+          "Explain why no codeword is prefix of another",
+          "Contrast fixed-length and Huffman coding"
+        ]
+      },
+      {
+        "title": "4.9.2 Representation and Workflow",
+        "content": "Describe greedy construction with a min-priority queue by repeatedly merging two least-frequency nodes.",
+        "examples": [
+          "Build Huffman tree from frequencies {a:5,b:9,c:12,d:13,e:16,f:45}",
+          "Generate code table by left=0/right=1 traversal",
+          "Decode a bitstream with tree navigation"
+        ]
+      },
+      {
+        "title": "4.9.3 Complexity and Practical Guidance",
+        "content": "Discuss coding efficiency, decoding via tree traversal, and practical constraints such as symbol table transmission.",
+        "examples": [
+          "Estimate compression gain from skewed frequencies",
+          "Compare static vs adaptive coding choices",
+          "Use Huffman in text and media compression pipelines"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand Huffman optimal-prefix coding goal",
+      "Construct Huffman trees with greedy merges",
+      "Generate and use prefix-free code tables",
+      "Evaluate compression effectiveness by distribution",
+      "Apply Huffman ideas in practical codecs"
+    ]
+  }
+}

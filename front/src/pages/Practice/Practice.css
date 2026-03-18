@@ -1,0 +1,116 @@
+.practice-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.practice-empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.practice-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.practice-header-title {
+  margin: 0 !important;
+}
+
+.practice-editor-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.practice-editor-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.practice-side-column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.output-container-full {
+  height: 100%;
+  overflow: auto;
+}
+
+.hints-full {
+  height: 100%;
+  overflow: auto;
+}
+
+.output-container {
+  height: calc(100vh - 350px);
+  overflow-y: auto;
+  background: #f6f6f6;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+}
+
+.output-text {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #262626;
+}
+
+.hints {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.hints h4 {
+  margin: 16px 0 8px 0;
+  color: #1890ff;
+  font-size: 14px;
+}
+
+.hints ul {
+  margin: 8px 0 16px 0;
+  padding-left: 20px;
+}
+
+.hints li {
+  margin-bottom: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* 确保代码编辑器正确显示 */
+.monaco-editor {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .practice-container {
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .output-container {
+    height: 300px;
+  }
+  
+  .hints {
+    max-height: 200px;
+  }
+}

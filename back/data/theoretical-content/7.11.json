@@ -1,0 +1,45 @@
+{
+  "id": "7.11",
+  "title": "7.11 Sorting Algorithm Analysis",
+  "subtitle": "Performance comparison and practical considerations",
+  "type": "theory",
+  "content": {
+    "introduction": "Sorting algorithm analysis compares methods by complexity, stability, memory, and workload fit to guide practical selection.",
+    "sections": [
+      {
+        "title": "7.11.1 Key Ideas and Model",
+        "content": "Define key evaluation dimensions: time complexity, space complexity, stability, adaptivity, and in-place property.",
+        "examples": [
+          "Compare stable vs unstable sorts for record processing",
+          "Differentiate adaptive and non-adaptive methods",
+          "Explain in-place constraint in memory-limited environments"
+        ]
+      },
+      {
+        "title": "7.11.2 Representation and Workflow",
+        "content": "Describe comparison frameworks across insertion/bubble/selection/shell/quick/merge/heap/non-comparison methods.",
+        "examples": [
+          "Build a decision table for common sorting methods",
+          "Evaluate nearly sorted vs random input scenarios",
+          "Incorporate worst-case guarantees into selection"
+        ]
+      },
+      {
+        "title": "7.11.3 Complexity and Practical Guidance",
+        "content": "Provide engineering decision guidelines based on data size, distribution, memory limits, and latency requirements.",
+        "examples": [
+          "Choose merge sort for stable large-data tasks",
+          "Choose quick sort for fast average in-memory sorting",
+          "Choose heap sort when worst-case bounds and low memory are required"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Analyze sorting methods with multiple criteria",
+      "Match algorithm choice to input and constraints",
+      "Balance average speed against worst-case guarantees",
+      "Account for stability and memory requirements",
+      "Make evidence-based sorting decisions in engineering practice"
+    ]
+  }
+}

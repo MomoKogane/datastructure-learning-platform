@@ -1,0 +1,568 @@
+/* LinkedListSection.css - page styles following the ArraySection layout pattern */
+
+.linkedlist-section {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #fafafa;
+  min-height: 100vh;
+}
+
+/* Header styles */
+.section-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 32px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  color: white !important;
+  margin-bottom: 16px !important;
+  font-size: 2.5rem !important;
+  font-weight: 600 !important;
+}
+
+.section-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.2rem !important;
+  margin-bottom: 0 !important;
+  line-height: 1.6;
+}
+
+/* Tab styles */
+.ant-tabs-large > .ant-tabs-nav .ant-tabs-tab {
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px 8px 0 0;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+}
+
+.ant-tabs-large > .ant-tabs-nav .ant-tabs-tab:hover {
+  background: rgba(24, 144, 255, 0.1);
+}
+
+.ant-tabs-large > .ant-tabs-nav .ant-tabs-tab-active {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Theory content styles */
+.theory-content {
+  padding: 24px;
+}
+
+.concept-card {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.concept-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.concept-card .ant-card-head {
+  background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-bottom: 1px solid #e1f5fe;
+  border-radius: 12px 12px 0 0;
+}
+
+.concept-card .ant-card-head-title {
+  color: #0369a1;
+  font-weight: 600;
+}
+
+/* Visualization content styles */
+.visualization-content {
+  padding: 24px;
+}
+
+.visualization-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.visualization-card .ant-card-head {
+  background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-bottom: 2px solid #38bdf8;
+}
+
+.linkedlist-visualization {
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin: 16px 0;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkedlist-visualization svg {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+}
+
+.empty-list-message {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-style: italic;
+}
+
+.operation-info {
+  text-align: center;
+  padding: 8px 16px;
+  background: rgba(24, 144, 255, 0.1);
+  border-radius: 20px;
+  color: #1890ff;
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+/* Examples content styles */
+.examples-content {
+  padding: 24px;
+}
+
+.examples-content .ant-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 16px;
+}
+
+.examples-content .ant-tabs-tab-pane {
+  padding-top: 16px;
+}
+
+/* Practice content styles */
+.practice-content {
+  padding: 24px;
+}
+
+.exercise-card {
+  border-radius: 12px;
+  border-left: 4px solid #52c41a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.exercise-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.exercise-card .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 24px 12px;
+}
+
+.exercise-card .ant-card-body {
+  padding: 20px 24px;
+}
+
+/* Test content styles */
+.test-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.test-content .ant-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Generic card styles */
+.ant-card.ant-card-small {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.ant-card.ant-card-small:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ant-card.ant-card-small .ant-card-head {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  min-height: 40px;
+  padding: 8px 16px;
+}
+
+.ant-card.ant-card-small .ant-card-head-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.ant-card.ant-card-small .ant-card-body {
+  padding: 16px;
+}
+
+/* Input control styles */
+.ant-input-number {
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  transition: all 0.2s ease;
+}
+
+.ant-input-number:hover,
+.ant-input-number:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Button styles */
+.ant-btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.ant-btn-primary {
+  background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+  border: none;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.ant-btn-primary:hover {
+  background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+}
+
+.ant-btn-default {
+  background: white;
+  border: 1px solid #d1d5db;
+  color: #374151;
+}
+
+.ant-btn-default:hover {
+  border-color: #3b82f6;
+  color: #3b82f6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ant-btn-dangerous {
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  border: none;
+  color: white;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.ant-btn-dangerous:hover {
+  background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4);
+}
+
+/* Tag styles */
+.ant-tag {
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-weight: 500;
+  border: none;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .linkedlist-section-v2 {
+    padding: 16px;
+  }
+  
+  .section-header {
+    padding: 24px 20px;
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 2rem !important;
+  }
+  
+  .section-description {
+    font-size: 1rem !important;
+  }
+  
+  .theory-content,
+  .visualization-content,
+  .examples-content,
+  .practice-content,
+  .test-content {
+    padding: 16px;
+  }
+  
+  .ant-tabs-large > .ant-tabs-nav .ant-tabs-tab {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .linkedlist-visualization svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header {
+    padding: 20px 16px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .ant-tabs-large > .ant-tabs-nav .ant-tabs-tab {
+    padding: 10px 12px;
+    font-size: 13px;
+    margin-right: 4px;
+  }
+  
+  .concept-card,
+  .exercise-card {
+    margin-bottom: 12px;
+  }
+  
+  .ant-card-body {
+    padding: 16px !important;
+  }
+}
+
+/* Animation effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.linkedlist-section-v2 .ant-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.linkedlist-section-v2 .ant-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.linkedlist-section-v2 .ant-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.linkedlist-section-v2 .ant-card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+/* Code editor card styles */
+.ant-card .monaco-editor {
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+/* Linked-list visualization special styles */
+.linkedlist-visualization .node-highlight {
+  animation: nodeHighlight 1s ease-in-out infinite alternate;
+}
+
+@keyframes nodeHighlight {
+  from {
+    stroke-width: 2px;
+    stroke: #1890ff;
+  }
+  to {
+    stroke-width: 4px;
+    stroke: #ff4d4f;
+  }
+}
+
+/* Operation steps card styles */
+.operation-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.operation-step {
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border-left: 4px solid #52c41a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.operation-step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.operation-step h4 {
+  color: #1890ff;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.operation-step ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.operation-step li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Info panel styles */
+.info-panel {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.info-panel .ant-typography {
+  margin-bottom: 8px;
+  color: #0369a1;
+}
+
+.info-panel .ant-tag {
+  margin: 4px 0;
+}
+
+/* Loading state styles */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loading-container .ant-spin {
+  margin-bottom: 16px;
+}
+
+/* Error state styles */
+.error-container {
+  margin: 20px;
+  text-align: center;
+}
+
+.error-container .ant-alert {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+}
+
+/* External link button styles */
+.external-link-button {
+  height: auto !important;
+  padding: 12px !important;
+  text-align: left !important;
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+  background: white !important;
+  color: #333 !important;
+}
+
+.external-link-button:hover {
+  border-color: #1890ff !important;
+  box-shadow: 0 2px 4px rgba(24, 144, 255, 0.1) !important;
+  transform: translateY(-1px) !important;
+  color: #1890ff !important;
+}
+
+.external-link-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.external-link-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: inherit;
+}
+
+.external-link-platform {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Complexity table styles */
+.complexity-table {
+  margin-top: 16px;
+}
+
+.complexity-table .ant-tag {
+  min-width: 60px;
+  text-align: center;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-weight: 600;
+}
+
+/* Tips card styles */
+.tips-card {
+  background: linear-gradient(135deg, #fef7cd 0%, #fef3c7 100%);
+  border: 1px solid #fbbf24;
+  border-radius: 8px;
+}
+
+.tips-card .ant-card-head {
+  background: transparent;
+  border-bottom: 1px solid #f59e0b;
+}
+
+.tips-card .ant-card-head-title {
+  color: #d97706;
+  font-weight: 600;
+}
+
+.tips-card ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.tips-card li {
+  margin-bottom: 8px;
+  color: #92400e;
+  line-height: 1.6;
+}

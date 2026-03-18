@@ -1,0 +1,45 @@
+{
+  "id": "5.2.2",
+  "title": "5.2.2 Graph Traversal and DFS Algorithm",
+  "subtitle": "Depth-first search process and extension-ready visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "Depth-First Search (DFS) explores as far as possible along each branch before backtracking, making it effective for structural analysis.",
+    "sections": [
+      {
+        "title": "5.2.2.1 Key Ideas and Model",
+        "content": "Define DFS traversal order, visited marking, and recursion/stack equivalence to avoid repeated exploration.",
+        "examples": [
+          "Detect connectivity in an undirected graph",
+          "Classify edges conceptually during DFS",
+          "Use visited set to prevent infinite loops"
+        ]
+      },
+      {
+        "title": "5.2.2.2 Representation and Workflow",
+        "content": "Describe recursive and iterative DFS workflows for connected and disconnected graphs.",
+        "examples": [
+          "Trace DFS from a start node on adjacency list",
+          "Implement iterative DFS with explicit stack",
+          "Run full DFS forest for disconnected graphs"
+        ]
+      },
+      {
+        "title": "5.2.2.3 Complexity and Practical Guidance",
+        "content": "DFS runs in O(V+E), with stack depth linked to path length. Discuss cycle handling and traversal order effects.",
+        "examples": [
+          "Estimate recursion depth on deep graphs",
+          "Compare DFS with BFS for shortest path in unweighted graphs",
+          "Use DFS for topological and component-style analyses"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand DFS exploration and backtracking",
+      "Implement both recursive and iterative forms",
+      "Guarantee linear traversal complexity",
+      "Handle cycles and disconnected graphs safely",
+      "Use DFS in graph-structure analysis tasks"
+    ]
+  }
+}

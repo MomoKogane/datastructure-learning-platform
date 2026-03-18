@@ -1,0 +1,45 @@
+{
+  "id": "5.3.4",
+  "title": "5.3.4 Floyd Algorithm",
+  "subtitle": "All-pairs shortest path via dynamic programming",
+  "type": "theory",
+  "content": {
+    "introduction": "Floyd (Floyd-Warshall) computes all-pairs shortest paths through dynamic programming over intermediate vertex sets.",
+    "sections": [
+      {
+        "title": "5.3.4.1 Key Ideas and Model",
+        "content": "Define DP state dist[i][j] and transition via intermediate node k: min(dist[i][j], dist[i][k] + dist[k][j]).",
+        "examples": [
+          "Initialize distance matrix with direct edges and infinity",
+          "Interpret diagonal entries and self-distance",
+          "Explain intermediate-node transition logic"
+        ]
+      },
+      {
+        "title": "5.3.4.2 Representation and Workflow",
+        "content": "Describe matrix initialization and triple-loop update order for all vertices as intermediate candidates.",
+        "examples": [
+          "Apply one k-iteration and update affected pairs",
+          "Reconstruct routes with next-hop/predecessor matrix",
+          "Handle unreachable pairs consistently"
+        ]
+      },
+      {
+        "title": "5.3.4.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(V^3) time and O(V^2) space; discuss suitability for dense graphs and full pairwise analysis.",
+        "examples": [
+          "Compare Floyd with repeated Dijkstra",
+          "Estimate memory for V=1000 matrix",
+          "Use Floyd for offline all-pairs planning"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand all-pairs DP formulation",
+      "Implement matrix-based transition updates",
+      "Compute shortest paths between every node pair",
+      "Evaluate O(V^3) and O(V^2) resource costs",
+      "Use Floyd for dense or full-pair requirements"
+    ]
+  }
+}

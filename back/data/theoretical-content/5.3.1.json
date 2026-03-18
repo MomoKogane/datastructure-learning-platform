@@ -1,0 +1,45 @@
+{
+  "id": "5.3.1",
+  "title": "5.3.1 Shortest Path and Applications",
+  "subtitle": "Path problem modeling and extension-ready visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "Shortest-path problems optimize route cost under edge-weight models and appear in navigation, networking, and planning systems.",
+    "sections": [
+      {
+        "title": "5.3.1.1 Key Ideas and Model",
+        "content": "Define path, path cost, single-source and all-pairs shortest-path problem variants.",
+        "examples": [
+          "Model city routing with weighted edges",
+          "Differentiate shortest-hop and shortest-weight objectives",
+          "Explain why negative cycles break finite shortest paths"
+        ]
+      },
+      {
+        "title": "5.3.1.2 Representation and Workflow",
+        "content": "Describe problem setup assumptions including non-negative weights, negative edges, and graph directionality.",
+        "examples": [
+          "Choose source set and distance initialization strategy",
+          "Represent unreachable nodes with infinity",
+          "Interpret predecessor structure for route reconstruction"
+        ]
+      },
+      {
+        "title": "5.3.1.3 Complexity and Practical Guidance",
+        "content": "Compare algorithm families by constraints: Dijkstra for non-negative, Bellman-Ford for negatives, Floyd for all-pairs.",
+        "examples": [
+          "Select Dijkstra for sparse non-negative graphs",
+          "Select Bellman-Ford when negative edges exist",
+          "Select Floyd for dense all-pairs analysis"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand shortest-path problem variants",
+      "Set correct assumptions before selecting algorithms",
+      "Interpret path cost and predecessor results",
+      "Map constraints to suitable algorithm families",
+      "Apply shortest-path models in real systems"
+    ]
+  }
+}

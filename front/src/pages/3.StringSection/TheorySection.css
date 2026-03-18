@@ -1,0 +1,162 @@
+/* TheorySection.css */
+/* Styles for the Theory section page */
+
+.theory-section {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #fafafa;
+  min-height: 100vh;
+}
+
+.section-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 32px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  color: white !important;
+  margin-bottom: 16px !important;
+  font-size: 2.5rem !important;
+  font-weight: 600 !important;
+}
+
+.section-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.2rem !important;
+  margin-bottom: 0 !important;
+  line-height: 1.6;
+}
+
+.ant-tabs-large > .ant-tabs-nav .ant-tabs-tab {
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px 8px 0 0;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+}
+
+.ant-tabs-large > .ant-tabs-nav .ant-tabs-tab:hover {
+  background: rgba(24, 144, 255, 0.1);
+}
+
+.ant-tabs-large > .ant-tabs-nav .ant-tabs-tab-active {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.theory-content {
+  padding: 24px;
+}
+
+.theory-card,
+.concept-card,
+.takeaway-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.concept-card {
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.concept-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.concept-card .ant-card-head {
+  background: linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-bottom: 1px solid #e1f5fe;
+  border-radius: 12px 12px 0 0;
+}
+
+.concept-card .ant-card-head-title {
+  color: #0369a1;
+  font-weight: 600;
+}
+
+.takeaway-list .ant-list-item {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 12px 0;
+}
+
+.takeaway-list .ant-list-item:last-child {
+  border-bottom: none;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.error-container {
+  margin: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .theory-section {
+    padding: 16px;
+  }
+
+  .section-header {
+    padding: 24px 20px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 2rem !important;
+  }
+
+  .section-description {
+    font-size: 1rem !important;
+  }
+
+  .theory-content {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header {
+    padding: 20px 16px;
+  }
+
+  .section-title {
+    font-size: 1.8rem !important;
+  }
+
+  .ant-tabs-large > .ant-tabs-nav .ant-tabs-tab {
+    padding: 10px 12px;
+    font-size: 13px;
+    margin-right: 4px;
+  }
+}

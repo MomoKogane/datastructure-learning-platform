@@ -1,0 +1,45 @@
+{
+  "id": "7.7",
+  "title": "7.7 Heap Sort",
+  "subtitle": "Heap-based in-place sorting",
+  "type": "theory",
+  "content": {
+    "introduction": "Heap sort builds a heap and repeatedly extracts the root to produce sorted order with guaranteed O(n log n) time.",
+    "sections": [
+      {
+        "title": "7.7.1 Key Ideas and Model",
+        "content": "Define heap property and relation between build-heap and repeated extraction steps.",
+        "examples": [
+          "Explain max-heap use for ascending order",
+          "Show index formulas for parent/children",
+          "Contrast heap sort with quick sort behavior"
+        ]
+      },
+      {
+        "title": "7.7.2 Representation and Workflow",
+        "content": "Describe in-place heap construction, root-end swap, and sift-down restoration process.",
+        "examples": [
+          "Build max-heap from unsorted array",
+          "Swap root with tail and shrink heap region",
+          "Sift down to restore heap property"
+        ]
+      },
+      {
+        "title": "7.7.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(n log n) time and O(1) extra space, but stability is not preserved.",
+        "examples": [
+          "Compare heap sort memory advantage over merge sort",
+          "Discuss cache locality limitations",
+          "Use heap sort when worst-case guarantees are required"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand heap-based sorting pipeline",
+      "Implement build-heap and sift-down correctly",
+      "Guarantee O(n log n) worst-case runtime",
+      "Leverage in-place memory usage",
+      "Recognize non-stability and locality trade-offs"
+    ]
+  }
+}

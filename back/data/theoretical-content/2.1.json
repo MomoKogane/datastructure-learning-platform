@@ -1,0 +1,146 @@
+{
+  "id": "2.1",
+  "title": "2.1 Arrays and Sequential Lists",
+  "subtitle": "Array Implementation, Operations, and Applications",
+  "type": "theory",
+  "content": {
+    "introduction": "Arrays are fundamental data structures that store elements in contiguous memory locations, providing efficient access to elements through indexing. This section covers array implementation, operations, and practical applications in computer science.",
+    "sections": [
+      {
+        "title": "2.1.1 Array Fundamentals",
+        "content": "Definition: An array is a collection of elements stored in contiguous memory locations, where each element can be accessed using an index.\n\nKey Characteristics:\n1) Homogeneous Elements means all elements must be of the same data type.\n2) Fixed Size indicates the size is determined at declaration time in static arrays.\n3) Contiguous Memory Layout ensures elements are stored in consecutive memory addresses.\n4) Index-based Access allows direct access to any element using its position.\n\nArray Declaration and Initialization:\n1) Static Arrays have fixed size determined at compile time like int arr[10].\n2) Dynamic Arrays can change size during runtime using memory allocation.\n3) Initialization can be done at declaration time with values like int arr[] = {1, 2, 3, 4, 5}.\n4) Default Initialization fills the array with default values (0 for integers, null for objects).\n\nMemory Organization:\n1) Base Address is the memory address of the first element.\n2) Element Size determines how much memory each element occupies.\n3) Address Calculation follows the formula: address = base_address + (index ¡Á element_size).\n4) Cache Locality benefits from contiguous memory layout for better performance.\n\nArray Types:\n1) One-dimensional Arrays are linear sequences of elements.\n2) Multi-dimensional Arrays are arrays of arrays, like matrices.\n3) Jagged Arrays have rows of different lengths.\n4) Dynamic Arrays can resize during program execution.",
+        "examples": [
+          "Declaring an integer array: int numbers[5] creates space for 5 integers",
+          "Accessing elements: numbers[0] gets the first element, numbers[4] gets the last",
+          "Memory layout: If base address is 1000 and each int is 4 bytes, then numbers[2] is at address 1008",
+          "2D array: int matrix[3][4] creates a 3¡Á4 grid of integers"
+        ]
+      },
+      {
+        "title": "2.1.2 Array Operations",
+        "content": "Definition: Array operations are fundamental functions that can be performed on arrays to manipulate and access data.\n\nBasic Access Operations:\n1) Reading accesses an element at a specific index with O(1) time complexity.\n2) Writing modifies an element at a specific index with O(1) time complexity.\n3) Traversal visits all elements sequentially with O(n) time complexity.\n4) Search looks for a specific element with O(n) time complexity for unsorted arrays.\n\nInsertion Operations:\n1) Insert at Beginning requires shifting all existing elements right with O(n) time complexity.\n2) Insert at End simply adds element if space available with O(1) time complexity.\n3) Insert at Middle requires shifting elements from insertion point to end with O(n) time complexity.\n4) Resize Operation may be needed if array is full, requiring O(n) time to copy elements.\n\nDeletion Operations:\n1) Delete from Beginning requires shifting all remaining elements left with O(n) time complexity.\n2) Delete from End simply removes the last element with O(1) time complexity.\n3) Delete from Middle requires shifting elements from deletion point with O(n) time complexity.\n4) Maintain Size may require filling deleted position with default value.\n\nAdvanced Operations:\n1) Sorting arranges elements in order using algorithms like quicksort or mergesort.\n2) Binary Search finds elements in sorted arrays with O(log n) time complexity.\n3) Reverse changes the order of elements from last to first.\n4) Rotation shifts elements by a specified number of positions.\n5) Merge combines two sorted arrays into one sorted array.",
+        "examples": [
+          "Reading: arr[3] retrieves the element at index 3 in constant time",
+          "Insertion at index 2: shift elements 2,3,4... to positions 3,4,5... then insert new element",
+          "Deletion at index 1: shift elements 2,3,4... to positions 1,2,3... to fill the gap",
+          "Binary search: repeatedly divide search space in half to find target element"
+        ]
+      },
+      {
+        "title": "2.1.3 Sequential Lists and Dynamic Arrays",
+        "content": "Definition: Sequential lists are abstract data types that maintain elements in a sequence, often implemented using dynamic arrays that can resize during runtime.\n\nDynamic Array Implementation:\n1) Capacity Management maintains actual storage size separate from logical size.\n2) Growth Strategy typically doubles capacity when full to amortize resize cost.\n3) Shrinking Strategy may reduce capacity when utilization drops below threshold.\n4) Memory Allocation uses malloc/realloc in C or new/delete in C++ for dynamic sizing.\n\nCapacity vs Size:\n1) Logical Size represents the number of elements currently stored.\n2) Physical Capacity represents the total storage space available.\n3) Load Factor is the ratio of size to capacity, indicating fullness.\n4) Expansion Trigger occurs when size equals capacity during insertion.\n\nAmortized Analysis:\n1) Insertion Cost is O(1) average case due to infrequent resizing operations.\n2) Doubling Strategy ensures each element is copied at most log n times.\n3) Total Cost for n insertions is O(n) when capacity doubles each time.\n4) Average Cost per insertion becomes O(1) when amortized over all operations.\n\nSequential List ADT Operations:\n1) Insert(index, element) adds element at specified position.\n2) Delete(index) removes element at specified position.\n3) Get(index) retrieves element at specified position.\n4) Set(index, element) updates element at specified position.\n5) Size() returns current number of elements.\n6) IsEmpty() checks if list contains no elements.\n\nAdvantages and Disadvantages:\nAdvantages include O(1) random access, good cache locality, and simple implementation.\nDisadvantages include expensive insertion/deletion in middle, fixed memory allocation, and potential memory waste.",
+        "examples": [
+          "Dynamic array starts with capacity 4, grows to 8 when 5th element added",
+          "ArrayList in Java automatically manages capacity and provides sequential list interface",
+          "Vector in C++ combines dynamic arrays with additional utility functions",
+          "Python lists use dynamic arrays internally with over-allocation for efficiency"
+        ]
+      }
+    ],
+    "quizQuestions": [
+      {
+        "id": "2.1-q1",
+        "type": "multiple-choice",
+        "question": "What is the primary reason array element access by index is O(1)?",
+        "options": [
+          "Elements are stored in contiguous memory and addresses are computed directly",
+          "Arrays are always sorted",
+          "Array insertion at any position is constant time",
+          "Arrays use linked pointers between elements"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Array elements are in contiguous memory, so the address can be calculated directly from base address and index.",
+        "difficulty": "easy",
+        "topic": "2.1.1 Array Fundamentals"
+      },
+      {
+        "id": "2.1-q2",
+        "type": "true-false",
+        "question": "In static arrays, the size is typically fixed at declaration time.",
+        "correctAnswer": true,
+        "explanation": "This is true. Static arrays have a fixed size that is determined when declared.",
+        "difficulty": "easy",
+        "topic": "2.1.1 Array Fundamentals"
+      },
+      {
+        "id": "2.1-q3",
+        "type": "multiple-choice",
+        "question": "Which operation is usually O(n) in an unsorted array?",
+        "options": [
+          "Reading arr[i]",
+          "Writing arr[i]",
+          "Linear search for a value",
+          "Getting array length"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Without sorting or indexing structures, search often scans sequentially, giving O(n).",
+        "difficulty": "easy",
+        "topic": "2.1.2 Array Operations"
+      },
+      {
+        "id": "2.1-q4",
+        "type": "multiple-choice",
+        "question": "Why can insertion at the beginning of an array cost O(n)?",
+        "options": [
+          "Because each element must be hashed",
+          "Because all existing elements may need to shift right",
+          "Because arrays cannot store integers",
+          "Because it always triggers binary search"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Inserting at index 0 requires moving current elements to make room, which is linear in array size.",
+        "difficulty": "medium",
+        "topic": "2.1.2 Array Operations"
+      },
+      {
+        "id": "2.1-q5",
+        "type": "true-false",
+        "question": "Deleting the last element in a typical array-backed list is generally O(1).",
+        "correctAnswer": true,
+        "explanation": "This is generally true because no shifting is required when removing from the end.",
+        "difficulty": "easy",
+        "topic": "2.1.2 Array Operations"
+      },
+      {
+        "id": "2.1-q6",
+        "type": "multiple-choice",
+        "question": "In a dynamic array, what does capacity represent?",
+        "options": [
+          "The current number of stored elements",
+          "The maximum recursion depth",
+          "The allocated storage size available before resizing",
+          "The number of linked nodes"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Capacity is the amount of allocated storage, while size is how many elements are currently stored.",
+        "difficulty": "medium",
+        "topic": "2.1.3 Sequential Lists and Dynamic Arrays"
+      },
+      {
+        "id": "2.1-q7",
+        "type": "true-false",
+        "question": "With a doubling growth strategy, dynamic array append has amortized O(1) complexity.",
+        "correctAnswer": true,
+        "explanation": "This is true. Although occasional resizes are O(n), the average append cost over many operations is O(1).",
+        "difficulty": "medium",
+        "topic": "2.1.3 Sequential Lists and Dynamic Arrays"
+      },
+      {
+        "id": "2.1-q8",
+        "type": "short-answer",
+        "question": "Briefly explain the difference between logical size and physical capacity in a dynamic array.",
+        "correctAnswer": "Logical size is the number of elements currently stored, while physical capacity is the total allocated slots available before resizing.",
+        "explanation": "Size tracks actual element count; capacity tracks allocated memory space.",
+        "difficulty": "medium",
+        "topic": "2.1.3 Sequential Lists and Dynamic Arrays"
+      }
+    ],
+    "keyTakeaways": [
+      "Arrays provide O(1) random access to elements using index-based addressing",
+      "Array operations have different time complexities: access O(1), insertion/deletion O(n)",
+      "Dynamic arrays automatically manage capacity and provide flexible sizing",
+      "Sequential lists combine array benefits with abstract data type interface",
+      "Memory layout and cache locality make arrays efficient for sequential access patterns"
+    ]
+  }
+}

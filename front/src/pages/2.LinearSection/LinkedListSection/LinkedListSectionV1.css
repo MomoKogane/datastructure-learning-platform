@@ -1,0 +1,302 @@
+/* NOTE: This stylesheet belongs to LinkedListSectionV1 and is kept as a legacy reference. */
+/* Page-level styles */
+.linked-list-section {
+  padding: 24px;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-title {
+  color: white !important;
+  margin-bottom: 16px;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.section-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Theory content styles */
+.theory-content .concept-card {
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.theory-content .concept-card .ant-card-head {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.theory-content .concept-card .ant-card-head-title {
+  color: #495057;
+  font-weight: 600;
+}
+
+/* Visualization styles */
+.linked-list-visualization {
+  position: relative;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 8px;
+  overflow-x: auto;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linked-list-visualization svg {
+  min-width: 100%;
+}
+
+.node-animating {
+  animation: nodeGlow 1s ease-in-out;
+}
+
+@keyframes nodeGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px #1890ff);
+  }
+}
+
+.empty-list-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 40px;
+}
+
+.head-indicator {
+  position: relative;
+}
+
+/* Visualization card styles */
+.visualization-card {
+  margin-bottom: 24px;
+}
+
+.visualization-card .ant-card-head {
+  background: linear-gradient(135deg, #e6f4ff 0%, #f0f8ff 100%);
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.visualization-card .ant-card-head-title {
+  color: #1890ff;
+  font-weight: 600;
+}
+
+/* Control panel styles */
+.controls-card {
+  margin-bottom: 16px;
+}
+
+.controls-card .ant-card-head {
+  background: #f6ffed;
+  border-bottom: 1px solid #b7eb8f;
+}
+
+.controls-card .ant-card-head-title {
+  color: #52c41a;
+  font-weight: 600;
+}
+
+/* Code examples styles */
+.code-examples {
+  padding: 0;
+}
+
+.code-examples .ant-tabs-tab {
+  font-weight: 500;
+}
+
+.code-examples .ant-tabs-content-holder {
+  padding: 0;
+}
+
+/* Practice card styles */
+.practice-card {
+  margin-bottom: 24px;
+}
+
+.practice-card .ant-card-head {
+  background: linear-gradient(135deg, #fff2e8 0%, #fff7e6 100%);
+  border-bottom: 1px solid #ffd591;
+}
+
+.practice-card .ant-card-head-title {
+  color: #fa8c16;
+  font-weight: 600;
+}
+
+.exercise-card {
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.exercise-card:hover {
+  border-color: #1890ff;
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
+}
+
+.exercise-card .ant-card-body {
+  padding: 16px;
+}
+
+/* Resource card styles */
+.resources-card .ant-card-head {
+  background: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.resources-card .ant-card-head-title {
+  color: #586069;
+  font-weight: 600;
+}
+
+.external-link-button {
+  height: auto !important;
+  padding: 12px !important;
+  text-align: left !important;
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+  background: white !important;
+  color: #333 !important;
+}
+
+.external-link-button:hover {
+  border-color: #1890ff !important;
+  box-shadow: 0 2px 4px rgba(24, 144, 255, 0.1) !important;
+  transform: translateY(-1px) !important;
+  color: #1890ff !important;
+}
+
+.external-link-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.external-link-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: inherit;
+}
+
+.external-link-platform {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .linked-list-section {
+    padding: 16px;
+  }
+  
+  .section-header {
+    padding: 20px 16px;
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-description {
+    font-size: 1rem;
+  }
+  
+  .linked-list-visualization {
+    padding: 15px;
+    overflow-x: scroll;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .theory-content .concept-card {
+    margin-bottom: 12px;
+  }
+  
+  .linked-list-visualization {
+    padding: 10px;
+  }
+}
+
+/* Ant Design component styles */
+.ant-tabs-tab {
+  font-weight: 500;
+}
+
+.ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ant-card-head {
+  border-radius: 8px 8px 0 0;
+}
+
+.ant-btn {
+  border-radius: 6px;
+}
+
+.ant-input-number {
+  border-radius: 6px;
+}
+
+.ant-select .ant-select-selector {
+  border-radius: 6px;
+}
+
+/* Complexity tag styles */
+.ant-tag {
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 2px 8px;
+}
+
+/* Scrollbar styles */
+.linked-list-visualization::-webkit-scrollbar {
+  height: 8px;
+}
+
+.linked-list-visualization::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.linked-list-visualization::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.linked-list-visualization::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

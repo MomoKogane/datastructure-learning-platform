@@ -1,0 +1,45 @@
+{
+  "id": "3.2.1",
+  "title": "3.2.1 Pattern Matching: Definition and Applications",
+  "subtitle": "Core concept, typical scenarios, and extension-ready visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "Pattern matching identifies occurrences of a pattern in text and is foundational for search, filtering, and language processing.",
+    "sections": [
+      {
+        "title": "3.2.1.1 Key Ideas and Model",
+        "content": "Define text, pattern, exact match, first occurrence, and all occurrences. Clarify why naive scanning may become expensive on long repetitive inputs.",
+        "examples": [
+          "Find all occurrences of \"ana\" in \"banana\"",
+          "Distinguish exact matching from fuzzy matching",
+          "Explain why repeated prefixes affect performance"
+        ]
+      },
+      {
+        "title": "3.2.1.2 Representation and Workflow",
+        "content": "Describe the general matching pipeline: preprocessing assumptions, scan window movement, mismatch handling, and result reporting.",
+        "examples": [
+          "Scan a log line sequence for fixed signatures",
+          "Show mismatch handling with a moving window",
+          "Record all match starting indices"
+        ]
+      },
+      {
+        "title": "3.2.1.3 Complexity and Practical Guidance",
+        "content": "Compare baseline and optimized strategies at a high level, including when to move from simple matching to advanced algorithms.",
+        "examples": [
+          "Use brute force for small one-off inputs",
+          "Use preprocessed methods for long repetitive text",
+          "Escalate to multi-pattern matching in IDS pipelines"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Frame pattern matching problems precisely",
+      "Understand the generic scan-and-compare workflow",
+      "Recognize input characteristics that affect speed",
+      "Choose suitable matching strategy by workload",
+      "Connect matching concepts to real engineering systems"
+    ]
+  }
+}

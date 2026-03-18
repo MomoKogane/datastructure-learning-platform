@@ -1,0 +1,45 @@
+{
+  "id": "5.3.3",
+  "title": "5.3.3 Bellman-Ford Algorithm",
+  "subtitle": "Shortest paths with negative edges and negative-cycle detection",
+  "type": "theory",
+  "content": {
+    "introduction": "Bellman-Ford finds single-source shortest paths even with negative-weight edges and can detect reachable negative cycles.",
+    "sections": [
+      {
+        "title": "5.3.3.1 Key Ideas and Model",
+        "content": "Define repeated edge relaxation over V-1 rounds and the dynamic-programming intuition behind path-length bounds.",
+        "examples": [
+          "Explain why V-1 rounds are sufficient without negative cycles",
+          "Define negative-cycle detection criterion",
+          "Contrast Bellman-Ford assumptions with Dijkstra"
+        ]
+      },
+      {
+        "title": "5.3.3.2 Representation and Workflow",
+        "content": "Describe initialization, full-edge scans, predecessor updates, and final extra scan for negative-cycle detection.",
+        "examples": [
+          "Run Bellman-Ford on a graph with one negative edge",
+          "Track distance updates by iteration",
+          "Mark nodes affected by a detected negative cycle"
+        ]
+      },
+      {
+        "title": "5.3.3.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(VE), higher than Dijkstra but more general due to negative-edge support.",
+        "examples": [
+          "Compare runtime on sparse vs dense graphs",
+          "Use Bellman-Ford when correctness with negatives is required",
+          "Evaluate trade-off between generality and speed"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand iterative relaxation principle",
+      "Support shortest paths with negative edges",
+      "Detect and report negative cycles",
+      "Analyze O(VE) runtime implications",
+      "Choose Bellman-Ford for correctness-critical weighted graphs"
+    ]
+  }
+}

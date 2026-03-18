@@ -1,0 +1,352 @@
+// Data Structure Course Catalog Data
+export interface Section {
+  id: string;
+  title: string;
+  description?: string;
+}
+
+export interface Chapter {
+  id: string;
+  title: string;
+  description?: string;
+  sections: Section[];
+}
+
+// Simplified local fallback data (main data now comes from backend)
+export const catalogData: Chapter[] = [
+  {
+    id: 'introduction',
+    title: '1. Introduction',
+    description: 'Fundamentals of Data Structures and Algorithms',
+    sections: [
+      {
+        id: 'basic-concepts',
+        title: '1.1 Basic Concepts',
+        description: 'Data structures, abstract data types, algorithm analysis'
+      },
+      {
+        id: 'complexity-analysis',
+        title: '1.2 Complexity Analysis',
+        description: 'Time and space complexity, Big O notation'
+      }
+    ]
+  },
+  {
+    id: 'linear-structures',
+    title: '2. Linear Data Structures',
+    description: 'Arrays, linked lists, stacks, and queues',
+    sections: [
+      {
+        id: 'arrays',
+        title: '2.1 Arrays and Sequential Lists',
+        description: 'Array implementation, operations, and applications'
+      },
+      {
+        id: 'linked-lists',
+        title: '2.2 Linked Lists',
+        description: 'Singly, doubly, and circular linked lists'
+      },
+      {
+        id: 'stacks',
+        title: '2.3 Stacks',
+        description: 'LIFO operations, implementations, and applications'
+      },
+      {
+        id: 'queues',
+        title: '2.4 Queues',
+        description: 'FIFO operations, circular queues, and applications'
+      }
+    ]
+  },
+  {
+    id: 'strings',
+    title: '3. Strings',
+    description: 'String data structure and pattern matching',
+    sections: [
+      {
+        id: 'string-basics',
+        title: '3.1 String Fundamentals',
+        description: 'String definition, storage, and basic operations'
+      },
+      {
+        id: 'pattern-matching-overview',
+        title: '3.2.1 Pattern Matching: Definition and Applications',
+        description: 'Core concept, typical scenarios, and extension-ready visualization/code/practice'
+      },
+      {
+        id: 'bf-algorithm',
+        title: '3.2.2 BF Brute Force Algorithm',
+        description: 'Matching process and complexity analysis, reserved for future visualization'
+      },
+      {
+        id: 'kmp-algorithm',
+        title: '3.2.3 KMP Algorithm',
+        description: 'Prefix table and optimized matching, reserved for visualization/code/practice'
+      }
+    ]
+  },
+  {
+    id: 'trees',
+    title: '4. Trees and Binary Trees',
+    description: 'Tree structures and algorithms',
+    sections: [
+      {
+        id: 'tree-basics',
+        title: '4.1 Tree Fundamentals',
+        description: 'Tree concepts, terminology, and properties'
+      },
+      {
+        id: 'tree-traversal',
+        title: '4.2 Tree Traversal',
+        description: 'Preorder, inorder, postorder, and level-order traversal methods'
+      },
+      {
+        id: 'binary-tree-basics',
+        title: '4.3 Binary Tree Basics',
+        description: 'Binary tree node structure, key properties, and BST foundation'
+      },
+      {
+        id: 'threaded-binary-tree',
+        title: '4.4 Threaded Binary Trees',
+        description: 'Threading concept, traversal optimization, and extension-ready visualization/code/practice'
+      },
+      {
+        id: 'bst-basics',
+        title: '4.5 Binary Search Tree Basics',
+        description: 'BST concepts and core operations'
+      },
+      {
+        id: 'avl-tree',
+        title: '4.6 AVL Trees',
+        description: 'AVL balancing principles and rotations'
+      },
+      {
+        id: 'red-black-tree',
+        title: '4.7 Red-Black Trees',
+        description: 'Color rules, balancing logic, and extension-ready visualization/code/practice'
+      },
+      {
+        id: 'multiway-balanced-tree',
+        title: '4.8 Multi-way Balanced Trees',
+        description: 'Brief concept overview '
+      },
+      {
+        id: 'huffman-trees',
+        title: '4.9 Huffman Trees',
+        description: 'Optimal binary trees, coding applications, and expanded follow-up topics'
+      },
+      {
+        id: 'heap',
+        title: '4.10 Heap',
+        description: 'Heap structure, priority queue operations, and heapify process'
+      }
+    ]
+  },
+  {
+    id: 'graphs',
+    title: '5. Graphs',
+    description: 'Graph theory and algorithms',
+    sections: [
+      {
+        id: 'graph-basics',
+        title: '5.1 Graph Fundamentals',
+        description: 'Graph concepts, terminology, and storage methods'
+      },
+      {
+        id: 'graph-traversal-overview',
+        title: '5.2.1 Graph Traversal and Applications',
+        description: 'Traversal goals, scenarios, and extension-ready visualization/code/practice'
+      },
+      {
+        id: 'graph-dfs',
+        title: '5.2.2 Graph Traversal and DFS Algorithm',
+        description: 'Depth-first search process and extension-ready visualization/code/practice'
+      },
+      {
+        id: 'graph-bfs',
+        title: '5.2.3 Graph Traversal and BFS Algorithm',
+        description: 'Breadth-first search process and extension-ready visualization/code/practice'
+      },
+      {
+        id: 'shortest-path-overview',
+        title: '5.3.1 Shortest Path and Applications',
+        description: 'Path problem modeling and extension-ready visualization/code/practice'
+      },
+      {
+        id: 'dijkstra-algorithm',
+        title: '5.3.2 Dijkstra Algorithm',
+        description: 'Single-source shortest path for non-negative weights'
+      },
+      {
+        id: 'bellman-ford-algorithm',
+        title: '5.3.3 Bellman-Ford Algorithm',
+        description: 'Shortest paths with negative edges and negative-cycle detection'
+      },
+      {
+        id: 'floyd-algorithm',
+        title: '5.3.4 Floyd Algorithm',
+        description: 'All-pairs shortest path via dynamic programming'
+      },
+      {
+        id: 'mst-overview',
+        title: '5.4.1 Minimum Spanning Tree and Applications',
+        description: 'MST concept, goals, and extension-ready visualization/code/practice'
+      },
+      {
+        id: 'prim-algorithm',
+        title: '5.4.2 Prim Algorithm',
+        description: 'Greedy tree expansion for minimum spanning tree'
+      },
+      {
+        id: 'kruskal-algorithm',
+        title: '5.4.3 Kruskal Algorithm',
+        description: 'Edge-sorting plus union-find for minimum spanning tree'
+      }
+    ]
+  },
+  {
+    id: 'searching',
+    title: '6. Searching',
+    description: 'Search algorithms and data structures',
+    sections: [
+      {
+        id: 'linear-search',
+        title: '6.1 Sequential Search',
+        description: 'Linear search in ordered and unordered lists'
+      },
+      {
+        id: 'binary-search',
+        title: '6.2 Binary Search',
+        description: 'Binary search algorithm and variants'
+      },
+      {
+        id: 'hash-tables',
+        title: '6.3 Hash Tables',
+        description: 'Hash functions, collision resolution, performance'
+      },
+      {
+        id: 'b-tree-search',
+        title: '6.4 B-Tree',
+        description: 'Balanced multi-way search tree for external storage'
+      },
+      {
+        id: 'b-plus-tree-search',
+        title: '6.5 B+ Tree',
+        description: 'Leaf-linked indexed search tree for range queries'
+      }
+    ]
+  },
+  {
+    id: 'sorting',
+    title: '7. Sorting',
+    description: 'Sorting algorithms and analysis',
+    sections: [
+      {
+        id: 'insertion-sort',
+        title: '7.1 Insertion Sort',
+        description: 'Build sorted prefix by insertion'
+      },
+      {
+        id: 'bubble-sort',
+        title: '7.2 Bubble Sort',
+        description: 'Swap adjacent out-of-order elements'
+      },
+      {
+        id: 'selection-sort',
+        title: '7.3 Selection Sort',
+        description: 'Select minimum each round'
+      },
+      {
+        id: 'shell-sort',
+        title: '7.4 Shell Sort',
+        description: 'Gap-based insertion sorting'
+      },
+      {
+        id: 'quick-sort',
+        title: '7.5 Quick Sort',
+        description: 'Partition and recurse with pivot'
+      },
+      {
+        id: 'merge-sort',
+        title: '7.6 Merge Sort',
+        description: 'Divide and merge sorted halves'
+      },
+      {
+        id: 'heap-sort',
+        title: '7.7 Heap Sort',
+        description: 'Heap-based in-place sorting'
+      },
+      {
+        id: 'radix-sort',
+        title: '7.8 Radix Sort',
+        description: 'Digit-wise stable sorting'
+      },
+      {
+        id: 'bucket-sort',
+        title: '7.9 Bucket Sort',
+        description: 'Bucket distribution and merge'
+      },
+      {
+        id: 'external-sort',
+        title: '7.10 External Sort',
+        description: 'Run generation and multi-way merge on disk'
+      },
+      {
+        id: 'sorting-analysis',
+        title: '7.11 Sorting Algorithm Analysis',
+        description: 'Performance comparison and practical considerations'
+      }
+    ]
+  }
+];
+
+// // Simplified section mapping (will be fetched from backend)
+// export const sectionToStructureMap: Record<string, string> = {
+//   // String sections
+//   'string-basics': 'array',
+//   'pattern-matching-overview': 'array',
+//   'bf-algorithm': 'array',
+//   'kmp-algorithm': 'array',
+
+//   // Arrays and Sequential structures
+//   'arrays': 'array',
+//   'linear-search': 'array',
+//   'binary-search': 'array',
+//   'hash-tables': 'array',
+//   'b-tree-search': 'array',
+//   'b-plus-tree-search': 'array',
+//   'simple-sorts': 'array',
+//   'advanced-sorts': 'array',
+//   'special-sorts': 'array',
+  
+//   // Linear structures
+//   'linked-lists': 'linkedlist',
+//   'stacks': 'linkedlist',
+//   'queues': 'linkedlist',
+//   'test-linkedlist': 'linkedlist-v3',
+  
+//   // Binary trees
+//   'binary-tree-basics-traversal': 'binarytree',
+//   'threaded-binary-tree': 'binarytree',
+//   'bst-basics': 'binarytree',
+//   'avl-tree': 'binarytree',
+//   'red-black-tree': 'binarytree',
+//   'multiway-balanced-tree': 'binarytree',
+//   'binary-trees': 'binarytree',
+//   'search-trees': 'binarytree',
+//   'huffman-trees': 'binarytree',
+//   'tree-basics': 'binarytree',
+
+//   // Graph sections
+//   'graph-basics': 'graph-fundamental',
+//   'graph-traversal-overview': 'graph-traversal',
+//   'graph-dfs': 'graph-traversal',
+//   'graph-bfs': 'graph-traversal',
+//   'shortest-path-overview': 'shortest-path',
+//   'dijkstra-algorithm': 'shortest-path',
+//   'bellman-ford-algorithm': 'shortest-path',
+//   'floyd-algorithm': 'shortest-path',
+//   'mst-overview': 'minimum-spanning-trees',
+//   'prim-algorithm': 'minimum-spanning-trees',
+//   'kruskal-algorithm': 'minimum-spanning-trees'
+// };

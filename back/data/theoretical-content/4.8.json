@@ -1,0 +1,45 @@
+{
+  "id": "4.8",
+  "title": "4.8 Multi-way Balanced Trees",
+  "subtitle": "Brief concept overview with links to B-Tree and B+ Tree sections",
+  "type": "theory",
+  "content": {
+    "introduction": "Multi-way balanced trees generalize binary branching to reduce height and optimize block-oriented storage access.",
+    "sections": [
+      {
+        "title": "4.8.1 Key Ideas and Model",
+        "content": "Define node degree, key ranges, and balanced-height guarantees in multi-way search trees.",
+        "examples": [
+          "Interpret key interval routing in an internal node",
+          "Explain why higher branching reduces height",
+          "Compare binary vs multi-way fan-out"
+        ]
+      },
+      {
+        "title": "4.8.2 Representation and Workflow",
+        "content": "Describe node split/merge/redistribution behavior during insertion and deletion.",
+        "examples": [
+          "Insert keys until a node split occurs",
+          "Propagate split to parent and possibly root",
+          "Handle underflow with borrow or merge"
+        ]
+      },
+      {
+        "title": "4.8.3 Complexity and Practical Guidance",
+        "content": "Discuss I/O efficiency benefits for external memory and why database indexes prefer multi-way trees.",
+        "examples": [
+          "Estimate disk page accesses by tree height",
+          "Explain why B+ leaves are linked for ranges",
+          "Use multi-way trees for large persistent indexes"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand multi-way balanced search principles",
+      "Reason about split/merge maintenance",
+      "Connect fan-out to lower tree height",
+      "Evaluate external-memory advantages",
+      "Prepare for detailed B-Tree and B+ Tree operations"
+    ]
+  }
+}

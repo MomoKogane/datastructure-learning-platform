@@ -1,0 +1,45 @@
+{
+  "id": "7.10",
+  "title": "7.10 External Sort",
+  "subtitle": "Run generation and multi-way merge on disk",
+  "type": "theory",
+  "content": {
+    "introduction": "External sort handles datasets larger than memory by generating sorted runs and merging them with disk-aware strategies.",
+    "sections": [
+      {
+        "title": "7.10.1 Key Ideas and Model",
+        "content": "Define run generation, multi-way merge, and I/O cost as primary optimization targets.",
+        "examples": [
+          "Explain why in-memory sort is insufficient for huge files",
+          "Define run length based on memory budget",
+          "Compare two-way and multi-way merge passes"
+        ]
+      },
+      {
+        "title": "7.10.2 Representation and Workflow",
+        "content": "Describe two-phase process: create sorted chunks in memory, then perform k-way merge with buffers.",
+        "examples": [
+          "Generate sorted runs from chunked input",
+          "Merge runs with a min-heap of current heads",
+          "Track temporary file lifecycle during merge phases"
+        ]
+      },
+      {
+        "title": "7.10.3 Complexity and Practical Guidance",
+        "content": "Discuss I/O complexity, buffer allocation, and practical tuning for throughput on storage systems.",
+        "examples": [
+          "Estimate number of merge passes for N records",
+          "Tune k-way merge by available buffers",
+          "Use external sort in log processing and ETL pipelines"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand external sorting workflow",
+      "Manage run generation and multi-way merge",
+      "Optimize for I/O rather than CPU only",
+      "Plan buffer and temporary storage usage",
+      "Apply external sort to large-scale data processing"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "7.9",
+  "title": "7.9 Bucket Sort",
+  "subtitle": "Bucket distribution and merge",
+  "type": "theory",
+  "content": {
+    "introduction": "Bucket sort distributes elements into value-range buckets, sorts each bucket, and concatenates results.",
+    "sections": [
+      {
+        "title": "7.9.1 Key Ideas and Model",
+        "content": "Define bucket mapping function and assumptions about input distribution for expected efficiency.",
+        "examples": [
+          "Map floating-point values in [0,1) to bucket indices",
+          "Explain dependence on distribution uniformity",
+          "Choose bucket count relative to input size"
+        ]
+      },
+      {
+        "title": "7.9.2 Representation and Workflow",
+        "content": "Describe bucket allocation, insertion, intra-bucket sorting, and merge-back process.",
+        "examples": [
+          "Distribute sample values into 10 buckets",
+          "Sort each bucket with insertion sort",
+          "Concatenate buckets in order to produce final output"
+        ]
+      },
+      {
+        "title": "7.9.3 Complexity and Practical Guidance",
+        "content": "Expected time can approach O(n) with near-uniform distribution; worst case degrades when data clusters heavily.",
+        "examples": [
+          "Analyze skewed-data worst-case behavior",
+          "Compare bucket and radix assumptions",
+          "Use bucket sort for normalized numeric datasets"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand bucket-distribution sorting idea",
+      "Design bucket mapping and count strategy",
+      "Handle intra-bucket sorting effectively",
+      "Evaluate distribution-sensitive performance",
+      "Apply bucket sort where value ranges are known"
+    ]
+  }
+}

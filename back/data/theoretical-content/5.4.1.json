@@ -1,0 +1,45 @@
+{
+  "id": "5.4.1",
+  "title": "5.4.1 Minimum Spanning Tree and Applications",
+  "subtitle": "MST concept, goals, and extension-ready visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "Minimum Spanning Tree (MST) connects all vertices in a weighted undirected graph with minimum total edge weight and no cycles.",
+    "sections": [
+      {
+        "title": "5.4.1.1 Key Ideas and Model",
+        "content": "Define spanning tree, cut property, and cycle property as MST correctness foundations.",
+        "examples": [
+          "Differentiate spanning tree and shortest-path tree",
+          "Explain cut property on a sample partition",
+          "Show why an MST has exactly V-1 edges"
+        ]
+      },
+      {
+        "title": "5.4.1.2 Representation and Workflow",
+        "content": "Describe MST problem workflow and constraints (connected, undirected, weighted graph assumptions).",
+        "examples": [
+          "Set up candidate edge selection process",
+          "Check cycle prevention during edge inclusion",
+          "Verify all vertices become connected"
+        ]
+      },
+      {
+        "title": "5.4.1.3 Complexity and Practical Guidance",
+        "content": "Compare Prim and Kruskal at a high level and explain where each strategy performs best.",
+        "examples": [
+          "Choose Prim for dense matrix-friendly graphs",
+          "Choose Kruskal for edge-sorted sparse graphs",
+          "Use MST for network backbone cost reduction"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand MST objective and constraints",
+      "Use cut/cycle properties for reasoning",
+      "Distinguish MST from shortest-path goals",
+      "Select Prim or Kruskal by graph characteristics",
+      "Apply MST in cost-optimized connectivity design"
+    ]
+  }
+}

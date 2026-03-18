@@ -1,0 +1,45 @@
+{
+  "id": "3.1",
+  "title": "3.1 String Fundamentals",
+  "subtitle": "String definition, storage, and basic operations",
+  "type": "theory",
+  "content": {
+    "introduction": "Strings are one of the most common linear data structures in software systems. This section covers what strings are, how they are stored in memory, and how basic operations affect correctness and performance.",
+    "sections": [
+      {
+        "title": "3.1.1 String Definition and Characteristics",
+        "content": "Definition: A string is a finite sequence of characters arranged in linear order. Characters can be letters, digits, symbols, or Unicode code points.\n\nCore Characteristics:\n1) Ordered sequence: character positions matter.\n2) Length-aware: each string has a defined length.\n3) Character set dependent: ASCII, UTF-8, UTF-16, etc.\n4) Immutable or mutable by language design.\n\nString as a Linear Structure:\n- Adjacent logical positions (index 0, 1, 2...) make strings a typical linear structure.\n- Many algorithms depend on sequential access and indexing.",
+        "examples": [
+          "\"hello\" has length 5 with indices 0..4",
+          "\"data-structures\" can be represented with Unicode code points",
+          "An empty string \"\" has length 0"
+        ]
+      },
+      {
+        "title": "3.1.2 Storage Models and Memory Representation",
+        "content": "Common Storage Models:\n1) Fixed-length arrays reserve a constant buffer size.\n2) Dynamic arrays allow resizing as content grows.\n3) Linked representation stores characters in linked nodes (less common in modern systems).\n\nEncoding and Memory:\n- ASCII uses 1 byte for standard English characters.\n- UTF-8 uses variable length and is space-efficient for ASCII-heavy text.\n- UTF-16 often used internally in many runtimes.\n\nPractical Trade-offs:\n- Contiguous storage improves cache locality and random index access.\n- Linked storage simplifies some insert/delete operations but increases pointer overhead.\n- Encoding choice affects length calculation and substring indexing semantics.",
+        "examples": [
+          "C-style string uses char array ending with null terminator",
+          "Java String stores characters in internal arrays with encoding metadata",
+          "UTF-8 string length in bytes may differ from character count"
+        ]
+      },
+      {
+        "title": "3.1.3 Basic String Operations",
+        "content": "Frequent Operations:\n1) Access: read character by index.\n2) Traversal: iterate over each character.\n3) Comparison: lexicographical or equality check.\n4) Concatenation: combine multiple strings.\n5) Substring: extract a contiguous segment.\n6) Insertion/Deletion/Replacement: modify content (or create new string for immutable types).\n\nComplexity Overview (typical contiguous model):\n- Index access: O(1)\n- Traversal: O(n)\n- Comparison: O(min(n, m))\n- Concatenation: O(n + m) unless optimized by builders\n- Substring copy: O(k)\n\nBest Practices:\n- Use string builders/buffers for repeated concatenation.\n- Understand immutability to avoid hidden allocation costs.\n- Be explicit about character encoding in I/O boundaries.",
+        "examples": [
+          "Comparing two equal long strings may scan all characters",
+          "Repeated + in loops can cause quadratic allocation overhead",
+          "Substring extraction in UTF-8 should respect character boundaries"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "String is a classic linear structure organized by character positions",
+      "Storage model and encoding directly affect performance and correctness",
+      "Basic operations have predictable complexity patterns",
+      "Immutability is safe but may introduce extra memory allocation",
+      "Efficient string handling requires choosing proper APIs for the workload"
+    ]
+  }
+}

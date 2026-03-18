@@ -1,0 +1,45 @@
+{
+  "id": "7.2",
+  "title": "7.2 Bubble Sort",
+  "subtitle": "Swap adjacent out-of-order elements",
+  "type": "theory",
+  "content": {
+    "introduction": "Bubble sort repeatedly swaps adjacent out-of-order elements, pushing larger elements toward the end each pass.",
+    "sections": [
+      {
+        "title": "7.2.1 Key Ideas and Model",
+        "content": "Define adjacent comparison and pass invariant where the largest unsorted element bubbles to final position.",
+        "examples": [
+          "Explain pass invariant after each outer loop",
+          "Show stable behavior under equal keys",
+          "Compare bubble and insertion movement patterns"
+        ]
+      },
+      {
+        "title": "7.2.2 Representation and Workflow",
+        "content": "Describe nested-loop workflow, swap conditions, and early-stop optimization with swap flags.",
+        "examples": [
+          "Trace [4,3,2,1] with swap logging",
+          "Use no-swap flag for early termination",
+          "Limit inner loop by sorted tail boundary"
+        ]
+      },
+      {
+        "title": "7.2.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(n^2) worst/average, O(n) best with early-stop, and O(1) extra space.",
+        "examples": [
+          "Evaluate bubble sort for teaching vs production",
+          "Compare swap count on random inputs",
+          "Use only for tiny or demonstrative datasets"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand adjacent-swap sorting process",
+      "Implement early-stop optimization safely",
+      "Recognize stable but slow characteristics",
+      "Analyze quadratic runtime behavior",
+      "Use bubble sort mainly for learning scenarios"
+    ]
+  }
+}

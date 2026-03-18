@@ -1,0 +1,45 @@
+{
+  "id": "5.4.3",
+  "title": "5.4.3 Kruskal Algorithm",
+  "subtitle": "Edge-sorting plus union-find for minimum spanning tree",
+  "type": "theory",
+  "content": {
+    "introduction": "Kruskal builds an MST by sorting edges by weight and selecting non-cycling edges using a disjoint-set structure.",
+    "sections": [
+      {
+        "title": "5.4.3.1 Key Ideas and Model",
+        "content": "Define edge-order greedy rule and cycle detection with union-find (disjoint set union).",
+        "examples": [
+          "Explain why selecting smallest safe edge is valid",
+          "Define union-find find/union operations",
+          "Describe component merging interpretation"
+        ]
+      },
+      {
+        "title": "5.4.3.2 Representation and Workflow",
+        "content": "Describe workflow: sort edges, iterate from smallest, union components when endpoints are in different sets.",
+        "examples": [
+          "Process edges in sorted order and skip cycle-forming ones",
+          "Trace parent/rank updates in DSU",
+          "Stop when MST reaches V-1 edges"
+        ]
+      },
+      {
+        "title": "5.4.3.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(E log E) dominated by sorting, with near-constant DSU operations; discuss sparse graph advantages.",
+        "examples": [
+          "Compare Kruskal with Prim on sparse graphs",
+          "Estimate sorting overhead for large E",
+          "Use Kruskal in offline edge-list processing"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand Kruskal greedy edge selection",
+      "Use union-find for efficient cycle checks",
+      "Construct MST from sorted edge lists",
+      "Analyze O(E log E) complexity behavior",
+      "Prefer Kruskal for sparse edge-centric inputs"
+    ]
+  }
+}

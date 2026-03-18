@@ -1,0 +1,20 @@
+{
+  "name": "dslp-development",
+  "version": "1.0.0",
+  "description": "Development scripts for Data Structure Learning Platform",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd front && npm run dev",
+    "dev:backend": "cd back && npm run dev",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd front && npm run build",
+    "build:backend": "cd back && npm run build",
+    "install:all": "npm install && cd front && npm install && cd ../back && npm install",
+    "seed": "cd back && npm run seed",
+    "clean": "rm -rf front/dist back/dist",
+    "setup": "npm run install:all && npm run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

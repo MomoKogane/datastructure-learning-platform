@@ -1,0 +1,45 @@
+{
+  "id": "7.6",
+  "title": "7.6 Merge Sort",
+  "subtitle": "Divide and merge sorted halves",
+  "type": "theory",
+  "content": {
+    "introduction": "Merge sort divides arrays recursively and merges sorted halves, providing stable O(n log n) performance.",
+    "sections": [
+      {
+        "title": "7.6.1 Key Ideas and Model",
+        "content": "Define divide-and-conquer structure and sorted-merge invariant.",
+        "examples": [
+          "Explain why merge sort is stable",
+          "Visualize recursion tree depth",
+          "Contrast merge strategy with quick partition"
+        ]
+      },
+      {
+        "title": "7.6.2 Representation and Workflow",
+        "content": "Describe recursive splitting, merge procedure, and auxiliary buffer usage.",
+        "examples": [
+          "Trace splitting and merging for [38,27,43,3,9,82,10]",
+          "Merge two sorted lists step by step",
+          "Handle duplicate values while preserving order"
+        ]
+      },
+      {
+        "title": "7.6.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(n log n) time and O(n) extra space; discuss stability and external-sort friendliness.",
+        "examples": [
+          "Use merge sort for linked lists and stable sorting",
+          "Compare memory overhead with in-place sorts",
+          "Apply merge strategy in external sorting pipelines"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand recursive split-merge workflow",
+      "Implement stable merge operations",
+      "Guarantee O(n log n) sorting time",
+      "Account for additional memory requirements",
+      "Use merge sort where stability is required"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "4.7",
+  "title": "4.7 Red-Black Trees",
+  "subtitle": "Color rules, balancing logic, and extension-ready visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "Red-Black trees use color rules and controlled rotations to maintain near-balance with efficient updates.",
+    "sections": [
+      {
+        "title": "4.7.1 Key Ideas and Model",
+        "content": "Define core properties: root black, no consecutive reds, equal black-height on all root-to-leaf paths.",
+        "examples": [
+          "Check whether a colored tree satisfies Red-Black rules",
+          "Explain black-height consistency",
+          "Identify red-red violations after insertion"
+        ]
+      },
+      {
+        "title": "4.7.2 Representation and Workflow",
+        "content": "Describe insertion/deletion fixes using recoloring and rotations across parent-uncle configurations.",
+        "examples": [
+          "Fix insertion with red uncle by recoloring",
+          "Fix insertion with black uncle by rotation",
+          "Outline deletion fix-up high-level flow"
+        ]
+      },
+      {
+        "title": "4.7.3 Complexity and Practical Guidance",
+        "content": "Operations are O(log n) with fewer strict constraints than AVL, often yielding lower rebalancing overhead in updates.",
+        "examples": [
+          "Compare AVL and Red-Black update patterns",
+          "Evaluate implementation complexity trade-offs",
+          "Prefer Red-Black for balanced mixed workloads"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand Red-Black invariants",
+      "Apply recoloring and rotation strategies",
+      "Guarantee logarithmic dynamic operations",
+      "Compare balance strictness with AVL",
+      "Use Red-Black trees in standard library map/set contexts"
+    ]
+  }
+}

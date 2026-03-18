@@ -1,0 +1,45 @@
+{
+  "id": "5.2.3",
+  "title": "5.2.3 Graph Traversal and BFS Algorithm",
+  "subtitle": "Breadth-first search process and extension-ready visualization/code/practice",
+  "type": "theory",
+  "content": {
+    "introduction": "Breadth-First Search (BFS) explores graph vertices level by level and naturally computes minimum hop counts in unweighted graphs.",
+    "sections": [
+      {
+        "title": "5.2.3.1 Key Ideas and Model",
+        "content": "Define BFS frontier expansion, queue-based processing, and level distance semantics.",
+        "examples": [
+          "Find minimum edge-count path in an unweighted graph",
+          "Compute distance levels from a source",
+          "Explain queue behavior during frontier expansion"
+        ]
+      },
+      {
+        "title": "5.2.3.2 Representation and Workflow",
+        "content": "Describe BFS workflow with enqueue, visited marking, and parent tracking for path reconstruction.",
+        "examples": [
+          "Trace BFS queue states step by step",
+          "Record predecessor array for shortest-path tree",
+          "Run BFS from all unvisited nodes for full coverage"
+        ]
+      },
+      {
+        "title": "5.2.3.3 Complexity and Practical Guidance",
+        "content": "BFS runs in O(V+E) and uses O(V) memory in worst case. Discuss when BFS is preferred over DFS.",
+        "examples": [
+          "Compare BFS memory usage on wide graphs",
+          "Use BFS for nearest-target search",
+          "Prefer BFS when shortest unweighted path is required"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand BFS level-order exploration",
+      "Use queue and visited control correctly",
+      "Compute shortest paths in unweighted graphs",
+      "Analyze linear-time traversal complexity",
+      "Choose BFS for breadth-first discovery goals"
+    ]
+  }
+}

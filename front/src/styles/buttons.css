@@ -1,0 +1,244 @@
+/* Global Button Styles for Data Structure Learning Platform */
+
+/* Primary Button - Blue background with white text */
+.btn-primary,
+.ant-btn-primary {
+  color: white !important;
+  border-color: #1890ff !important;
+  background-color: #1890ff !important;
+  font-weight: 500 !important;
+}
+
+.btn-primary:hover,
+.ant-btn-primary:hover {
+  color: white !important;
+  border-color: #40a9ff !important;
+  background-color: #40a9ff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+}
+
+.btn-primary:focus,
+.ant-btn-primary:focus {
+  color: white !important;
+  border-color: #40a9ff !important;
+  background-color: #40a9ff !important;
+}
+
+/* Secondary Button - White background with blue text */
+.btn-secondary {
+  color: #1890ff !important;
+  border-color: #d9d9d9 !important;
+  background-color: #fff !important;
+  font-weight: 500 !important;
+}
+
+.btn-secondary:hover {
+  color: #40a9ff !important;
+  border-color: #40a9ff !important;
+  background-color: #f0f5ff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
+}
+
+.btn-secondary:focus {
+  color: #40a9ff !important;
+  border-color: #40a9ff !important;
+  background-color: #f0f5ff !important;
+}
+
+/* Success Button - Green theme */
+.btn-success {
+  color: white !important;
+  border-color: #52c41a !important;
+  background-color: #52c41a !important;
+  font-weight: 500 !important;
+}
+
+.btn-success:hover {
+  color: white !important;
+  border-color: #73d13d !important;
+  background-color: #73d13d !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+}
+
+/* Warning Button - Orange theme */
+.btn-warning {
+  color: white !important;
+  border-color: #fa8c16 !important;
+  background-color: #fa8c16 !important;
+  font-weight: 500 !important;
+}
+
+.btn-warning:hover {
+  color: white !important;
+  border-color: #ffa940 !important;
+  background-color: #ffa940 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(250, 140, 22, 0.3);
+}
+
+/* Danger Button - Red theme */
+.btn-danger {
+  color: white !important;
+  border-color: #f5222d !important;
+  background-color: #f5222d !important;
+  font-weight: 500 !important;
+}
+
+.btn-danger:hover {
+  color: white !important;
+  border-color: #ff4d4f !important;
+  background-color: #ff4d4f !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 34, 45, 0.3);
+}
+
+/* Ghost Button - Transparent with colored border */
+.btn-ghost {
+  color: #1890ff !important;
+  border-color: #1890ff !important;
+  background-color: transparent !important;
+  font-weight: 500 !important;
+}
+
+.btn-ghost:hover {
+  color: #40a9ff !important;
+  border-color: #40a9ff !important;
+  background-color: rgba(24, 144, 255, 0.05) !important;
+  transform: translateY(-1px);
+}
+
+/* Small size buttons */
+.btn-small {
+  font-size: 12px !important;
+  height: 24px !important;
+  padding: 0 7px !important;
+}
+
+/* Large size buttons */
+.btn-large {
+  font-size: 16px !important;
+  height: 40px !important;
+  padding: 6px 15px !important;
+}
+
+/* Disabled button states */
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-success:disabled,
+.btn-warning:disabled,
+.btn-danger:disabled,
+.btn-ghost:disabled {
+  transform: none !important;
+  box-shadow: none !important;
+  opacity: 0.6 !important;
+}
+
+/* Button with icon spacing */
+.btn-with-icon .anticon {
+  margin-right: 6px;
+}
+
+/* Card action buttons specific styles */
+.card-action-btn {
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Specific classes for our data structure cards */
+.start-learning-btn {
+  color: white !important;
+  border-color: #1890ff !important;
+  background-color: #1890ff !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.start-learning-btn:hover {
+  color: white !important;
+  border-color: #40a9ff !important;
+  background-color: #40a9ff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+}
+
+.code-practice-btn {
+  color: #1890ff !important;
+  border-color: #d9d9d9 !important;
+  background-color: #fff !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.code-practice-btn:hover {
+  color: #40a9ff !important;
+  border-color: #40a9ff !important;
+  background-color: #f0f5ff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.15);
+}
+
+/* Quiz/Test buttons */
+.quiz-btn {
+  color: white !important;
+  border-color: #722ed1 !important;
+  background-color: #722ed1 !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.quiz-btn:hover {
+  color: white !important;
+  border-color: #9254de !important;
+  background-color: #9254de !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(114, 46, 209, 0.3);
+}
+
+/* Practice mode buttons */
+.practice-btn {
+  color: white !important;
+  border-color: #13c2c2 !important;
+  background-color: #13c2c2 !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+
+.practice-btn:hover {
+  color: white !important;
+  border-color: #36cfc9 !important;
+  background-color: #36cfc9 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(19, 194, 194, 0.3);
+}
+
+/* Button groups */
+.btn-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-group-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Responsive button styles */
+@media (max-width: 768px) {
+  .btn-responsive {
+    width: 100% !important;
+    margin-bottom: 8px;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+  }
+}

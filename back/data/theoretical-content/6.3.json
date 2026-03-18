@@ -1,0 +1,45 @@
+{
+  "id": "6.3",
+  "title": "6.3 Hash Tables",
+  "subtitle": "Hash functions, collision resolution, performance",
+  "type": "theory",
+  "content": {
+    "introduction": "Hash tables provide average constant-time key lookup by mapping keys to buckets through hash functions.",
+    "sections": [
+      {
+        "title": "6.3.1 Key Ideas and Model",
+        "content": "Define hashing, buckets, load factor, and collision concepts. Explain why uniform key distribution matters.",
+        "examples": [
+          "Map string keys to bucket indices with a hash function",
+          "Explain collision occurrence with finite bucket count",
+          "Differentiate chaining and probing strategies"
+        ]
+      },
+      {
+        "title": "6.3.2 Representation and Workflow",
+        "content": "Describe collision resolution methods (chaining, open addressing) and resizing/rehashing workflow.",
+        "examples": [
+          "Insert/search/delete with separate chaining",
+          "Trace linear probing sequence after collision",
+          "Trigger resize when load factor threshold is exceeded"
+        ]
+      },
+      {
+        "title": "6.3.3 Complexity and Practical Guidance",
+        "content": "Average operations are O(1), with worst-case O(n). Discuss practical tuning via load factor and hash quality.",
+        "examples": [
+          "Compare memory overhead of chaining vs probing",
+          "Estimate performance degradation under poor hashes",
+          "Choose hash table for frequent exact key lookups"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand hash mapping and collision handling",
+      "Implement core operations under chosen strategy",
+      "Tune load factor and resizing policy",
+      "Reason about average vs worst-case complexity",
+      "Apply hash tables in key-value intensive services"
+    ]
+  }
+}

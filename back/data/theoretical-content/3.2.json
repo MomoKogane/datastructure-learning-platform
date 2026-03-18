@@ -1,0 +1,54 @@
+{
+  "id": "3.2",
+  "title": "3.2 Pattern Matching",
+  "subtitle": "BF algorithm, KMP algorithm, and applications",
+  "type": "theory",
+  "content": {
+    "introduction": "Pattern matching solves the problem of finding a pattern string inside a text string. It is fundamental in text processing, search systems, compilers, and bioinformatics.",
+    "sections": [
+      {
+        "title": "3.2.1 Problem Definition and Terminology",
+        "content": "Given text T (length n) and pattern P (length m), determine whether P appears in T, and if so, return occurrence positions.\n\nTerminology:\n1) Exact matching: characters must match exactly.\n2) First match vs all matches: return first index or all valid indices.\n3) Prefix and suffix: key concepts used in advanced algorithms.\n\nChallenges:\n- Large text sizes make naive approaches expensive.\n- Repeated prefixes in pattern can be exploited to skip redundant comparisons.",
+        "examples": [
+          "Text: ABABCABCACBAB, Pattern: ABCAC",
+          "Find all occurrences of \"ana\" in \"banana\"",
+          "Search keyword in log files with millions of lines"
+        ]
+      },
+      {
+        "title": "3.2.2 BF (Brute Force) Algorithm",
+        "content": "Core Idea:\nAlign pattern at each possible text position and compare characters one by one. On mismatch, shift pattern by one position and restart comparison.\n\nProcess:\n1) Set i at current text start, j at pattern start.\n2) If T[i + j] == P[j], continue j++.\n3) If mismatch, move start to i + 1 and reset j.\n4) If j reaches m, a match is found.\n\nComplexity:\n- Worst case: O(n * m)\n- Best case: O(n) for early mismatches\n- Space: O(1)\n\nAdvantages and Limitations:\n- Very simple and easy to implement.\n- Can be slow on repetitive text/pattern combinations.",
+        "examples": [
+          "Pattern \"aaaab\" in text \"aaaaaaaaab\" causes many repeated comparisons",
+          "Small inputs often make BF acceptable",
+          "BF is useful as a baseline for correctness testing"
+        ]
+      },
+      {
+        "title": "3.2.3 KMP Algorithm",
+        "content": "Core Idea:\nWhen mismatch occurs, avoid rechecking known-equal characters by using prefix information of the pattern.\n\nKey Preprocessing:\n- Build next/LPS array (Longest Proper Prefix which is also Suffix).\n- LPS tells where to continue in pattern after mismatch.\n\nMatching Phase:\n1) Compare text and pattern pointers.\n2) On match, advance both pointers.\n3) On mismatch, move pattern pointer using LPS instead of resetting to zero.\n4) Continue until text ends or full match found.\n\nComplexity:\n- Preprocessing: O(m)\n- Matching: O(n)\n- Total: O(n + m), Space: O(m)\n\nWhy KMP is Better:\n- Eliminates redundant comparisons in repetitive patterns.\n- Provides stable linear-time performance.",
+        "examples": [
+          "Pattern \"ABABC\" has reusable prefix-suffix structure",
+          "KMP performs well in long document search",
+          "KMP is a core technique for efficient exact matching"
+        ]
+      },
+      {
+        "title": "3.2.4 Applications of Pattern Matching",
+        "content": "Typical Application Domains:\n1) Text editor search and replace.\n2) Log and monitoring system keyword detection.\n3) DNA/protein sequence analysis.\n4) Intrusion detection and signature scanning.\n5) Compiler lexical processing and token recognition.\n\nEngineering Considerations:\n- Choose BF for simple, small-scale scenarios.\n- Choose KMP when predictable linear performance is required.\n- For multi-pattern or fuzzy matching, use specialized algorithms (e.g., Aho-Corasick, regex engines).",
+        "examples": [
+          "IDE search panel finds symbol occurrences in source files",
+          "SIEM platform detects known malicious signatures",
+          "Bioinformatics pipeline scans genome subsequences"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Pattern matching locates pattern occurrences in text efficiently",
+      "BF is simple but can degrade to O(n * m)",
+      "KMP uses prefix-suffix preprocessing to achieve O(n + m)",
+      "Algorithm choice should match data scale and performance requirements",
+      "Pattern matching is widely used across software and scientific systems"
+    ]
+  }
+}

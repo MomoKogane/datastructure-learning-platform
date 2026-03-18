@@ -1,0 +1,45 @@
+{
+  "id": "7.4",
+  "title": "7.4 Shell Sort",
+  "subtitle": "Gap-based insertion sorting",
+  "type": "theory",
+  "content": {
+    "introduction": "Insertion sort builds a sorted prefix by inserting each new element into its proper position.",
+    "sections": [
+      {
+        "title": "7.4.1 Key Ideas and Model",
+        "content": "Define sorted-prefix invariant and insertion-by-shift mechanism for each pass.",
+        "examples": [
+          "Explain why insertion sort is stable",
+          "Identify sorted prefix after each pass",
+          "Contrast insertion with selection strategy"
+        ]
+      },
+      {
+        "title": "7.4.2 Representation and Workflow",
+        "content": "Describe pass-by-pass process, inner-loop shifting, and stable ordering behavior.",
+        "examples": [
+          "Trace sorting of [5,2,4,6,1,3]",
+          "Count shifts for nearly sorted input",
+          "Implement in-place insertion with key variable"
+        ]
+      },
+      {
+        "title": "7.4.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(n^2) worst/average, O(n) best on nearly sorted data, with O(1) extra space.",
+        "examples": [
+          "Choose insertion sort for small arrays",
+          "Use it as base case in hybrid sorts",
+          "Compare performance on nearly sorted datasets"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand insertion-sort invariant",
+      "Implement shift-based insertion correctly",
+      "Leverage stability and in-place behavior",
+      "Recognize quadratic worst-case limits",
+      "Use insertion sort in small or nearly sorted cases"
+    ]
+  }
+}

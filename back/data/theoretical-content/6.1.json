@@ -1,0 +1,45 @@
+{
+  "id": "6.1",
+  "title": "6.1 Sequential Search",
+  "subtitle": "Linear search in ordered and unordered lists",
+  "type": "theory",
+  "content": {
+    "introduction": "Sequential (linear) search scans elements one by one and is the baseline method when no ordering or index structure exists.",
+    "sections": [
+      {
+        "title": "6.1.1 Key Ideas and Model",
+        "content": "Define linear scan behavior, termination conditions, and best/average/worst-case outcomes.",
+        "examples": [
+          "Search target 42 in an unsorted array",
+          "Explain first-match vs all-match scanning variants",
+          "Describe failure condition when target is absent"
+        ]
+      },
+      {
+        "title": "6.1.2 Representation and Workflow",
+        "content": "Describe implementation for unordered and ordered lists, including early stop optimization on sorted data.",
+        "examples": [
+          "Trace index progression for ordered early-stop search",
+          "Return both found flag and position index",
+          "Handle empty list and duplicate values"
+        ]
+      },
+      {
+        "title": "6.1.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(n) time and O(1) space; discuss when this simplicity is acceptable in practice.",
+        "examples": [
+          "Compare linear search with binary search prerequisites",
+          "Use linear scan for tiny datasets and one-off checks",
+          "Estimate expected comparisons under random target position"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand linear search behavior and limits",
+      "Implement robust scan termination logic",
+      "Apply sorted-data early stopping correctly",
+      "Evaluate O(n) cost realistically",
+      "Choose linear search for low-overhead simple tasks"
+    ]
+  }
+}

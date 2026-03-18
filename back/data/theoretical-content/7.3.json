@@ -1,0 +1,45 @@
+{
+  "id": "7.3",
+  "title": "7.3 Selection Sort",
+  "subtitle": "Select minimum each round",
+  "type": "theory",
+  "content": {
+    "introduction": "Selection sort repeatedly selects the minimum from the unsorted region and places it at the next sorted position.",
+    "sections": [
+      {
+        "title": "7.3.1 Key Ideas and Model",
+        "content": "Define sorted/unsorted partition invariant and minimum-selection logic per pass.",
+        "examples": [
+          "Explain why comparisons remain quadratic",
+          "Track minimum index during each pass",
+          "Contrast swap frequency with bubble sort"
+        ]
+      },
+      {
+        "title": "7.3.2 Representation and Workflow",
+        "content": "Describe scanning for minimum index and performing one swap at the end of each pass.",
+        "examples": [
+          "Trace selection sort on [29,10,14,37,13]",
+          "Swap current position with discovered minimum",
+          "Handle already sorted input behavior"
+        ]
+      },
+      {
+        "title": "7.3.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(n^2) regardless of input order, with O(1) space and low swap count.",
+        "examples": [
+          "Use selection when minimizing swaps is important",
+          "Compare non-adaptive nature with insertion sort",
+          "Apply for small fixed-size collections"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand selection-sort partitioning",
+      "Implement minimum-scan and swap steps",
+      "Recognize fixed O(n^2) comparison cost",
+      "Benefit from low swap count in some contexts",
+      "Use primarily for small-scale tasks and pedagogy"
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "title": "Array Visualization",
+  "config": {
+    "defaultArray": [10, 25, 3, 47, 18, 92, 15],
+    "maxSize": 10,
+    "minValue": 0,
+    "maxValue": 100,
+    "animationDuration": 800,
+    "highlightColor": "#1890ff",
+    "backgroundColor": "#f0f0f0",
+    "borderColor": "#d9d9d9",
+    "textColor": "#000000"
+  },
+  "operations": [
+    {
+      "id": "insert",
+      "name": "Insert Element",
+      "description": "Insert a new element at a specific index",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "label": "Insert Index",
+          "min": 0,
+          "max": "array.length",
+          "default": 2
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "label": "Value",
+          "min": 0,
+          "max": 100,
+          "default": 99
+        }
+      ],
+      "timeComplexity": "O(n)",
+      "explanation": "Inserting an element requires shifting all elements after the insertion point to make space."
+    },
+    {
+      "id": "delete",
+      "name": "Delete Element",
+      "description": "Remove an element at a specific index",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "label": "Delete Index",
+          "min": 0,
+          "max": "array.length - 1",
+          "default": 2
+        }
+      ],
+      "timeComplexity": "O(n)",
+      "explanation": "Deleting an element requires shifting all elements after the deletion point to fill the gap."
+    },
+    {
+      "id": "search",
+      "name": "Search Element",
+      "description": "Find the index of a specific value",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "number",
+          "label": "Search Value",
+          "min": 0,
+          "max": 100,
+          "default": 47
+        }
+      ],
+      "timeComplexity": "O(n)",
+      "explanation": "Linear search checks each element until the target is found or the array is exhausted."
+    },
+    {
+      "id": "update",
+      "name": "Update Element",
+      "description": "Change the value at a specific index",
+      "parameters": [
+        {
+          "name": "index",
+          "type": "number",
+          "label": "Update Index",
+          "min": 0,
+          "max": "array.length - 1",
+          "default": 1
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "label": "New Value",
+          "min": 0,
+          "max": 100,
+          "default": 50
+        }
+      ],
+      "timeComplexity": "O(1)",
+      "explanation": "Updating an element at a known index is a direct operation."
+    }
+  ],
+  "visualization": {
+    "showIndices": true,
+    "showValues": true,
+    "showOperation": true,
+    "animateChanges": true,
+    "enableInteraction": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "7.8",
+  "title": "7.8 Radix Sort",
+  "subtitle": "Digit-wise stable sorting",
+  "type": "theory",
+  "content": {
+    "introduction": "Radix sort orders keys by processing digits from least to most significant (or vice versa) using stable sub-sorts.",
+    "sections": [
+      {
+        "title": "7.8.1 Key Ideas and Model",
+        "content": "Define digit decomposition, radix/base, and stability requirement of per-digit sorting.",
+        "examples": [
+          "Explain why stability is mandatory for radix correctness",
+          "Choose radix/base for integer keys",
+          "Differentiate LSD and MSD strategies"
+        ]
+      },
+      {
+        "title": "7.8.2 Representation and Workflow",
+        "content": "Describe LSD workflow with counting/bucket distribution and collection per digit position.",
+        "examples": [
+          "Sort [170,45,75,90,802,24,2,66] by ones/tens/hundreds",
+          "Run counting distribution at each digit",
+          "Handle zero-padding for shorter numbers"
+        ]
+      },
+      {
+        "title": "7.8.3 Complexity and Practical Guidance",
+        "content": "Complexity is O(d(n + k)) for d digits and base size k; discuss constraints on key formats.",
+        "examples": [
+          "Compare radix with comparison-based lower bounds",
+          "Use radix for fixed-length integer/string keys",
+          "Evaluate memory usage of bucket arrays"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand non-comparison digit-based sorting",
+      "Implement stable per-digit passes",
+      "Analyze O(d(n+k)) behavior",
+      "Apply radix sort to suitable key domains",
+      "Recognize format and memory constraints"
+    ]
+  }
+}

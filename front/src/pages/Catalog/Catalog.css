@@ -1,0 +1,465 @@
+/* 让Chapter Content标题和List内容都距离Card左边界32px */
+.sections-container .ant-list,
+.sections-container h4.ant-typography {
+  margin-left: 32px !important;
+}
+.section-item {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.chapter-card .ant-card-body {
+  padding: 0 !important;
+}
+
+.catalog-container {
+  min-height: 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 0 5%; /* 左右预留 */
+  box-sizing: border-box;
+}
+
+.catalog-header {
+  padding: 20px 30px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.catalog-layout {
+  min-height: 0;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+  background: transparent;
+  margin: 0 auto;
+}
+
+.catalog-sider {
+  min-height: none;
+  background: white !important;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0 20px 20px 0;
+  margin: 20px 0;
+  align-self: stretch;
+  height: auto;
+  max-height: none;
+  overflow: hidden;
+}
+
+.catalog-menu-container {
+  padding: 20px;
+}
+
+.catalog-menu-title {
+  color: #1890ff;
+  margin-bottom: 16px !important;
+  text-align: center;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 12px;
+}
+
+.catalog-menu {
+  border: none;
+  background: transparent;
+}
+
+.catalog-menu .ant-menu-item {
+  margin: 8px 0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  height: auto;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+.catalog-menu .ant-menu-item:hover {
+  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);
+  color: white;
+  transform: translateX(4px);
+}
+
+.catalog-menu .ant-menu-item-selected {
+  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%) !important;
+  color: white !important;
+}
+
+.catalog-menu .ant-menu-item-icon {
+  font-size: 16px;
+}
+
+.catalog-content {
+  height: auto;
+  width: 100%;
+  padding: 20px;
+  background: transparent;
+  flex-grow: 1;
+  align-self: stretch;
+}
+
+.catalog-welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 76vh;
+  margin: 0 -20px;
+  padding: 10px 24px;
+}
+
+.welcome-card {
+  width: 100%;
+  max-width: 900px;
+  min-height: 640px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.welcome-content {
+  flex: 1;
+  text-align: center;
+  padding: 40px;
+}
+
+.welcome-icon {
+  font-size: 84px;
+  color: #1890ff;
+  margin-bottom: 32px;
+  display: block;
+}
+
+.system-info {
+  margin-top: 44px;
+  text-align: left;
+  background: #f8f9fa;
+  padding: 28px;
+  border-radius: 8px;
+}
+
+.system-info .ant-list-item {
+  padding: 8px 0;
+  border: none;
+}
+
+.chapter-content {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.chapter-card {
+  flex: 1;
+  max-width: 100%;
+  width: 100%;
+  /* height: 100%; */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: none;
+  overflow: hidden;
+}
+
+.chapter-header {
+  flex: 1;
+  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);
+  color: white;
+  padding: 30px;
+  margin: -24px -24px 24px -24px;
+}
+
+.chapter-header-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.chapter-header-text {
+  flex: 1;
+}
+
+.chapter-overview-btn {
+  margin-top: 2px;
+  margin-right: 0;
+}
+
+.chapter-description {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 16px 0 0 0;
+  font-size: 16px;
+}
+
+.sections-container {
+  /* flex: 1; */
+  width: 100%;
+  display: block;
+  flex-direction: column;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.section-item {
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  /* padding: 20px 24px;
+  margin-left: 0 !important;
+  margin-right: 0 !important; */
+  margin-bottom: 16px;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  /* width: 85%; */
+  
+  /* 横向长条状布局 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  width: 100%;
+}
+
+.section-item .ant-list-item-meta {
+  flex: 1;
+  margin-right: 24px;
+}
+
+.section-item .ant-list-item-meta-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1c1c1c;
+  margin-bottom: 8px;
+}
+
+.section-item .ant-list-item-meta-description {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.section-item .ant-list-item-action {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.section-item .ant-list-item-action > li {
+  padding: 0;
+}
+
+.section-item:hover {
+  box-shadow: 0 6px 24px rgba(24, 144, 255, 0.15);
+  border-color: #1890ff;
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fcff 100%);
+}
+
+.section-action-btn {
+  border-radius: 8px;
+  height: 40px;
+  width: 220px;
+  padding: 0 24px;
+  font-weight: 500;
+  font-size: 14px;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.section-action-btn.ant-btn-primary {
+  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%);
+  border: none;
+  box-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
+}
+
+.section-action-btn.ant-btn-primary:hover {
+  background: linear-gradient(135deg, #40a9ff 0%, #1890ff 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.4);
+}
+
+.section-action-btn:disabled {
+  background: #f5f5f5;
+  color: #bfbfbf;
+  border-color: #d9d9d9;
+}
+
+/* List组件样式重置，确保横向布局 */
+.sections-container .ant-list-item {
+  border: none !important;
+  padding: 0 !important;
+}
+
+.sections-container .ant-list-item-action {
+  margin-left: 0 !important;
+}
+
+.sections-container .ant-list-item-action > li {
+  padding-left: 0 !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .catalog-sider {
+    position: fixed;
+    left: -350px;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+  
+  .catalog-sider.mobile-open {
+    left: 0;
+  }
+  
+  .catalog-content {
+    margin-left: 0;
+  }
+  
+  .catalog-header {
+    padding: 15px 20px;
+  }
+  
+  .welcome-card {
+    margin: 0 16px;
+  }
+  
+  .chapter-content {
+    margin: 0 8px;
+  }
+  
+  /* 移动端章节项布局调整 */
+  .section-item {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 20px;
+  }
+  
+  .section-item .ant-list-item-meta {
+    margin-right: 0;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  
+  .section-item .ant-list-item-action {
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .section-action-btn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .chapter-header-main {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chapter-overview-btn {
+    width: 100%;
+    margin-top: 12px;
+    margin-right: 0;
+  }
+}
+
+/* 滚动条美化 */
+.catalog-sider ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.catalog-sider ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.catalog-sider ::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.catalog-sider ::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* 动画效果 */
+.catalog-menu .ant-menu-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.catalog-menu .ant-menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.catalog-menu .ant-menu-item:hover::before {
+  left: 100%;
+}
+
+/* 卡片悬浮效果 */
+.chapter-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1890ff, #40a9ff, #69c0ff);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.chapter-card:hover::before {
+  transform: scaleX(1);
+}
+
+.chapter-card .ant-card-body {
+  padding: 24px !important;
+}
+
+.chapter-header {
+  margin: -24px -24px 24px -24px !important;
+  padding: 30px !important;
+}
+
+.sections-container {
+  padding: 0 !important;
+}
+
+.sections-container h4.ant-typography {
+  margin-left: 16 !important;
+  padding-left: 0 !important;
+  text-align: left !important;
+}
+
+.sections-container .ant-list {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.section-item {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  text-align: left !important;
+  word-break: normal !important;
+  white-space: normal !important;
+  writing-mode: initial !important;
+}

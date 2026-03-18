@@ -1,0 +1,56 @@
+{
+  "name": "dslp-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Data Structure Learning Platform",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "dev:original": "nodemon src/index.ts",
+    "build": "rimraf dist && tsc -p tsconfig.prod.json",
+    "build:dev": "tsc -p tsconfig.json",
+    "build:source:hardcoded": "ts-node src/utils/buildUnifiedHardcodedSource.ts",
+    "init:dslp:from-source": "ts-node src/utils/initDslpFromUnifiedSource.ts",
+    "validate:envelope:content": "ts-node src/utils/validateModuleEnvelope.ts",
+    "import:hardcoded": "ts-node src/utils/importHardcodedToSplitCollections.ts --chapters=1-7",
+    "migrate:envelope:content": "ts-node src/utils/migrateModuleEnvelopeToContent.ts",
+    "export:mongo:snapshot": "ts-node src/utils/exportMongoSnapshotScript.ts",
+    "migrate:mongo:oneclick": "powershell -ExecutionPolicy Bypass -File scripts/mongo-migrate-oneclick.ps1",
+    "seed:quiz:sample": "ts-node src/utils/seedQuizBankSample.ts",
+    "seed:quiz:from-theory": "ts-node src/utils/seedQuizBankFromTheoryFiles.ts",
+    "seed:oj:default": "ts-node src/utils/seedOjDefaultProblems.ts"
+  },
+  "keywords": [
+    "data-structures",
+    "learning-platform",
+    "education",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.4",
+    "morgan": "^1.10.1",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/nodemailer": "^6.4.17",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.1.0",
+    "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "4.1",
+  "title": "4.1 Tree Fundamentals",
+  "subtitle": "Tree concepts, terminology, and properties",
+  "type": "theory",
+  "content": {
+    "introduction": "Tree fundamentals define hierarchical data modeling with parent-child relationships and are the basis for many indexing and search structures.",
+    "sections": [
+      {
+        "title": "4.1.1 Key Ideas and Model",
+        "content": "Define node, edge, root, leaf, degree, depth, and height. Explain subtree relations and recursive structure.",
+        "examples": [
+          "Identify root, internal nodes, and leaves in a sample tree",
+          "Compute node depth and tree height",
+          "Differentiate tree from general graph"
+        ]
+      },
+      {
+        "title": "4.1.2 Representation and Workflow",
+        "content": "Describe common tree representations and traversal perspectives. Explain how hierarchy captures nested or ordered relationships.",
+        "examples": [
+          "Represent a tree with linked nodes",
+          "Represent a rooted tree with parent arrays",
+          "Interpret a filesystem as a tree model"
+        ]
+      },
+      {
+        "title": "4.1.3 Complexity and Practical Guidance",
+        "content": "Discuss operation cost trends with respect to height, and why balanced trees are preferred for predictable performance.",
+        "examples": [
+          "Explain how height impacts search cost",
+          "Compare skewed and balanced tree behavior",
+          "Choose tree structures for hierarchical data"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Master core tree terminology",
+      "Model hierarchical data using trees",
+      "Relate tree height to operation efficiency",
+      "Understand why balancing matters",
+      "Prepare for binary and balanced tree algorithms"
+    ]
+  }
+}

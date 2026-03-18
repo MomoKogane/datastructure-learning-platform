@@ -1,0 +1,27 @@
+.svm-canvas-host {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.svm-canvas {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.svm-op-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.svm-op-inputs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.svm-op-input {
+  width: 140px;
+}

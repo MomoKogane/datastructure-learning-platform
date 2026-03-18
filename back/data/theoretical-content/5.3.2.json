@@ -1,0 +1,45 @@
+{
+  "id": "5.3.2",
+  "title": "5.3.2 Dijkstra Algorithm",
+  "subtitle": "Single-source shortest path for non-negative weights",
+  "type": "theory",
+  "content": {
+    "introduction": "Dijkstra computes shortest paths from one source in graphs with non-negative edge weights using greedy distance expansion.",
+    "sections": [
+      {
+        "title": "5.3.2.1 Key Ideas and Model",
+        "content": "Define settled vs unsettled nodes, tentative distance estimates, and the greedy selection invariant.",
+        "examples": [
+          "Explain why non-negative weights are required",
+          "Define edge relaxation formally",
+          "Interpret predecessor tree for path reconstruction"
+        ]
+      },
+      {
+        "title": "5.3.2.2 Representation and Workflow",
+        "content": "Describe priority-queue-based workflow: initialize source, repeatedly extract min-distance node, and relax outgoing edges.",
+        "examples": [
+          "Run Dijkstra on a 5-node weighted graph",
+          "Show priority queue updates after each relaxation",
+          "Recover shortest route from predecessor links"
+        ]
+      },
+      {
+        "title": "5.3.2.3 Complexity and Practical Guidance",
+        "content": "Complexity is O((V+E) log V) with binary heap (or O(V^2) with array). Discuss correctness conditions and non-negative edge requirement.",
+        "examples": [
+          "Compare heap vs array implementation complexity",
+          "Contrast Dijkstra with Bellman-Ford on negative edges",
+          "Use Dijkstra in map routing and network latency optimization"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Understand Dijkstra greedy invariant",
+      "Implement min-priority-queue relaxation loop",
+      "Guarantee correctness under non-negative weights",
+      "Analyze complexity under different data structures",
+      "Apply Dijkstra to practical routing tasks"
+    ]
+  }
+}

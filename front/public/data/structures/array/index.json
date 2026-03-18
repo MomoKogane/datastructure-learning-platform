@@ -1,0 +1,30 @@
+{
+  "id": "array",
+  "name": "Array",
+  "title": "Array Data Structure",
+  "description": "A fundamental data structure that stores elements in contiguous memory locations",
+  "difficulty": "Beginner",
+  "category": "Linear Data Structures",
+  "files": {
+    "theory": "./theory.json",
+    "visualization": "./visualization.json", 
+    "examples": "./examples.json",
+    "practice": "./practice.json"
+  },
+  "topics": [
+    "Memory Layout",
+    "Index Access",
+    "Time Complexity",
+    "Array Operations",
+    "Multi-dimensional Arrays"
+  ],
+  "prerequisites": [
+    "Basic Programming Concepts",
+    "Variables and Data Types"
+  ],
+  "nextTopics": [
+    "Dynamic Arrays",
+    "Linked Lists",
+    "Sorting Algorithms"
+  ]
+}

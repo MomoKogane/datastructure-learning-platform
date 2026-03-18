@@ -1,0 +1,48 @@
+{
+  "id": "1.1",
+  "title": "1.1 Basic Concepts",
+  "subtitle": "Data Structures, Abstract Data Types, Algorithm Analysis",
+  "type": "theory",
+  "content": {
+    "introduction": "This section introduces the fundamental concepts that form the foundation of data structures and algorithms. Understanding these concepts is crucial for mastering computer science and developing efficient software solutions.",
+    "sections": [
+      {
+        "title": "1.1.1 Data Structures",
+        "content": "Definition: A data structure is a way of organizing and storing data in a computer so that it can be accessed and manipulated efficiently.\n\nKey Characteristics:\n1) Organization refers to how data elements are arranged and related to each other.\n2) Access Methods determine how data can be retrieved and modified.\n3) Memory Usage indicates how efficiently memory is utilized.\n4) Operations define the allowed operations that can be performed on the data.\n\nTypes of Data Structures:\n1) Primitive Data Structures include basic data types like integers, floats, characters, and booleans.\n2) Linear Data Structures have elements arranged in sequential order such as arrays, linked lists, stacks, and queues.\n3) Non-linear Data Structures have elements not arranged sequentially like trees, graphs, and heaps.\n4) Homogeneous structures contain all elements of the same type while Heterogeneous structures contain elements of different types.\n\nClassification by Implementation:\nStatic Data Structures have fixed size determined at compile time like arrays. Dynamic Data Structures can change size during runtime like linked lists and trees.",
+        "examples": [
+          "Array with five elements showing linear, homogeneous, static properties",
+          "Linked List with nodes connected sequentially showing linear, dynamic properties",
+          "Binary Tree showing hierarchical structure with parent-child relationships",
+          "Hash Table showing key-value pairs with hash function mapping"
+        ]
+      },
+      {
+        "title": "1.1.2 Abstract Data Types (ADT)",
+        "content": "Definition: An Abstract Data Type (ADT) is a theoretical concept that defines a data type by its behavior (operations) rather than its implementation.\n\nKey Properties:\n1) Data Abstraction hides internal implementation details.\n2) Encapsulation bundles data and operations together.\n3) Interface defines what operations can be performed.\n4) Implementation Independence allows multiple implementations for the same ADT.\n\nCommon ADTs:\n1) List ADT has operations including insert, delete, search, and traverse, and can be implemented using arrays or linked lists.\n2) Stack ADT has operations including push, pop, top, and isEmpty, following the LIFO (Last In, First Out) principle.\n3) Queue ADT has operations including enqueue, dequeue, front, and isEmpty, following the FIFO (First In, First Out) principle.\n4) Set ADT has operations including add, remove, contains, union, and intersection, with no duplicate elements allowed.\n\nBenefits of ADT:\n1) Modularity separates interface from implementation.\n2) Reusability provides same interface with different implementations.\n3) Maintainability ensures implementation changes do not affect client code.\n4) Testing allows interface to be tested independently.",
+        "examples": [
+          "Stack ADT can be implemented using arrays or linked lists but provides the same push and pop operations",
+          "Queue ADT maintains FIFO ordering regardless of whether implemented with arrays or circular buffers",
+          "List ADT provides insertion and deletion operations independent of underlying storage mechanism",
+          "Set ADT guarantees uniqueness of elements regardless of implementation using hash tables or trees"
+        ]
+      },
+      {
+        "title": "1.1.3 Algorithm Analysis",
+        "content": "Definition: Algorithm analysis is the process of determining the computational complexity of algorithms in terms of time and space requirements.\n\nWhy Analysis Matters:\n1) Performance Prediction allows us to estimate how an algorithm will perform on large inputs.\n2) Comparison helps choose the best algorithm among alternatives.\n3) Scalability helps understand how performance changes with input size.\n4) Resource Planning allows prediction of memory and time requirements.\n\nTypes of Analysis:\n1) Time Complexity measures how execution time grows with input size.\n2) Space Complexity measures how memory usage grows with input size.\n3) Best Case represents the minimum time or space required in optimistic scenarios.\n4) Average Case represents the expected time or space for typical inputs.\n5) Worst Case represents the maximum time or space required in pessimistic scenarios.\n\nAsymptotic Notation:\n1) Big O notation represents the upper bound for worst case complexity.\n2) Omega notation represents the lower bound for best case complexity.\n3) Theta notation represents the tight bound for average case complexity.\n\nCommon Complexity Classes:\n1) O(1) represents constant time for operations like array access and hash table lookup.\n2) O(log n) represents logarithmic time for operations like binary search and balanced tree operations.\n3) O(n) represents linear time for operations like linear search and single loops.\n4) O(n log n) represents linearithmic time for efficient sorting algorithms.\n5) O(n squared) represents quadratic time for nested loops and simple sorting algorithms.\n6) O(2 to the power of n) represents exponential time for recursive algorithms with overlapping subproblems.\n\nAnalysis Methods:\n1) Counting Operations involves counting basic operations as a function of input size.\n2) Recurrence Relations are used for recursive algorithms.\n3) Amortized Analysis calculates average cost over a sequence of operations.\n4) Probabilistic Analysis determines expected performance on random inputs.",
+        "examples": [
+          "Binary search has O(log n) time complexity and O(1) space complexity",
+          "Bubble sort has O(n squared) time complexity in worst case and O(n) in best case",
+          "Merge sort has O(n log n) time complexity and O(n) space complexity",
+          "Hash table has O(1) average access time and O(n) worst case access time"
+        ]
+      }
+    ],
+    "keyTakeaways": [
+      "Data structures organize data for efficient access and manipulation",
+      "Abstract Data Types separate interface from implementation details",
+      "Algorithm analysis helps predict and compare performance",
+      "Asymptotic notation provides a mathematical framework for complexity analysis",
+      "Understanding these concepts is essential for designing efficient algorithms"
+    ]
+  }
+}
