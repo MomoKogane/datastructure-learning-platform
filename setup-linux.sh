@@ -3,6 +3,13 @@
 # 请在项目根目录运行：bash setup-linux.sh
 
 set -e
+# 检查 Docker 环境（OJ 沙箱判题需要）
+if ! command -v docker >/dev/null; then
+  echo "未检测到 Docker，OJ 判题功能需要 Docker 环境。请参考 https://docs.docker.com/get-docker/ 安装。"
+else
+  echo "检测到 Docker，建议构建 OJ 沙箱镜像："
+  echo "  bash back/docker/build-all.sh"
+fi
 
 # 1. 安装 Node.js（建议 18+）
 if ! command -v node >/dev/null; then
@@ -57,6 +64,11 @@ cd ..
 # tmux new -s dslp
 # cd front && npm run dev
 # cd ../back && npm run dev
+
+echo "------"
+echo "如需 OJ 判题功能，请确保已安装 Docker 并构建沙箱镜像（bash back/docker/build-all.sh）"
+echo "如需性能/健壮性测试，请参考 script/performance-test.js、script/robustness-test.js"
+echo "------"
 
 echo "环境搭建完成！"
 echo "前端: http://localhost:5178"

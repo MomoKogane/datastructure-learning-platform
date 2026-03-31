@@ -9,10 +9,7 @@
       "front/src/main.tsx"
     ],
     "back": [
-      "back/src/index.ts",
-      "back/src/index-minimal.ts",
-      "back/src/index-clean.ts",
-      "back/src/test-server.ts"
+      "back/src/index.ts"
     ]
   },
   "counts": {
@@ -37,17 +34,13 @@
     "front/src/pages/2.LinearSection/ArraySection/ArraySection2.css",
     "front/src/pages/2.LinearSection/LinkedListSection/LinkedListSection.css",
     "front/src/pages/2.LinearSection/LinkedListSection/LinkedListSectionV1.css",
-    "front/src/pages/2.LinearSection/LinkedListSection/LinkedListSectionV1.tsx",
     "front/src/pages/2.LinearSection/LinkedListSection/LinkedListVisualization.tsx",
-    "front/src/pages/2.LinearSection/QueueSection/QueueSection.tsx",
-    "front/src/pages/2.LinearSection/StackSection/StackSection.tsx",
     "front/src/pages/3.StringSection/TheorySection.css",
     "front/src/types/dataStructureContent.ts",
     "front/src/utils/dataStructureLoader.ts",
     "front/src/vite-env.d.ts"
   ],
   "backUnused": [
-    "back/src/data/minimalData.ts",
     "back/src/utils/initMongoFromMinimal.ts",
     "back/src/utils/seedDatabase.ts",
     "back/src/utils/seedQuizBankFromTheoryFiles.ts",

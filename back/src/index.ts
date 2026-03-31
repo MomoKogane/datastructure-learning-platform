@@ -11,7 +11,9 @@ import dataStructureRoutes from './routes/dataStructures';
 import quizRoutes from './routes/quizzes';
 import sectionContentRoutes from './routes/sectionContent';
 import userRoutes from './routes/users';
-import ojRoutes from './routes/oj';
+// 兼容 ts-node 下 default export 问题
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const ojRoutes = require('./routes/oj');
 import contentRoutes from './routes/content';
 // import progressRoutes from './routes/progress';
 
@@ -96,7 +98,9 @@ const connectDB = async () => {
     console.log('? Connected to MongoDB');
   } catch (error) {
     console.error('? MongoDB connection error:', error);
-    process.exit(1);
+// 兼容 ts-node 下 default export 问题
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const ojRoutes = require('./routes/oj');
   }
 };
 

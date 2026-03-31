@@ -1,4 +1,7 @@
 import express from 'express';
+// 邮箱服务模拟状态（全局，仅开发/测试用）
+let mailServiceMock: { enabled: boolean; Error?: boolean } = { enabled: true };
+
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
@@ -210,11 +213,23 @@ const getEmailPurposeLabel = (purpose: EmailPurpose): string => {
 };
 
 const sendVerificationCodeEmail = async (email: string, purpose: EmailPurpose, code: string): Promise<void> => {
+  // 邮箱服务模拟逻辑
+  if (!mailServiceMock.enabled) {
+    const err: any = new Error('邮件服务已关闭（模拟）'); 
+    err.__mockType = 'disabled'; 
+    throw err; 
+  }
+  if (mailServiceMock.Error) {
+    const err: any = new Error('邮件服务异常（模拟）'); 
+    err.__mockType = 'error'; 
+    throw err; 
+  }
   const smtpConfig = getSmtpConfig();
   if (!hasSmtpConfig(smtpConfig)) {
-    throw new Error('邮件服务未配置，请设置 SMTP_HOST/SMTP_PORT/SMTP_USER/SMTP_PASS/SMTP_FROM');
+    const err: any = new Error('邮件服务未配置，请设置 SMTP_HOST/SMTP_PORT/SMTP_USER/SMTP_PASS/SMTP_FROM');
+    err.__mockType = 'disabled';
+    throw err;
   }
-
   const purposeLabel = getEmailPurposeLabel(purpose);
   const transporter = getMailTransporter(smtpConfig);
   await transporter.sendMail({
@@ -340,12 +355,33 @@ const ensureSeedAdmin = async (): Promise<void> => {
   }
 };
 
-router.get('/', async (_req: express.Request, res: express.Response) => {
-  await ensureSeedAdmin();
-  res.json({
-    success: true,
-    message: 'Users API is ready. Default admin: 000 / 123456'
-  } as APIResponse);
+// 权限中间件：仅管理员可访问
+function adminOnly(req: express.Request, res: express.Response, next: express.NextFunction) {
+  const auth = req.headers.authorization;
+  if (!auth || !auth.startsWith('Bearer ')) {
+    res.status(401).json({ success: false, error: '未授权' });
+    return void 0;
+  }
+  try {
+    const token = auth.replace('Bearer ', '');
+    const payload = jwt.verify(token, JWT_SECRET);
+    if (typeof payload === 'object' && payload.role === 'admin') {
+      return next();
+    }
+    res.status(403).json({ success: false, error: '无权限' });
+    return void 0;
+  } catch {
+    res.status(401).json({ success: false, error: '无效token' });
+    return void 0;
+  }
+}
+
+// 用户列表接口（仅管理员可见，不泄露敏感信息）
+router.get('/', adminOnly, async (_req: express.Request, res: express.Response) => {
+  // 可返回用户数量等非敏感信息，或实际用户列表（如有需求）
+  const count = await User.countDocuments();
+  res.json({ success: true, count });
+  return void 0;
 });
 
 router.post('/email/send-code', async (req: express.Request, res: express.Response): Promise<void> => {
@@ -380,9 +416,15 @@ router.post('/email/send-code', async (req: express.Request, res: express.Respon
     const code = issueEmailCode(normalizedEmail, purpose, codeScope);
     await sendVerificationCodeEmail(normalizedEmail, purpose, code);
     res.json({ success: true, message: '验证码已发送至邮箱' } as APIResponse);
-  } catch (error) {
+  } catch (error: any) {
     deleteEmailCode(normalizedEmail, purpose, codeScope);
-    res.status(500).json({ success: false, error: `验证码发送失败：${(error as Error).message}` } as APIResponse);
+    if (error && error.__mockType === 'disabled') {
+      res.status(503).json({ success: false, error: error.message || '邮件服务不可用' } as APIResponse);
+    } else if (error && error.__mockType === 'error') {
+      res.status(500).json({ success: false, error: error.message || '邮件服务异常' } as APIResponse);
+    } else {
+      res.status(500).json({ success: false, error: `验证码发送失败：${(error as Error).message}` } as APIResponse);
+    }
   }
 });
 
@@ -500,10 +542,30 @@ router.post('/password/send-reset-code', async (req: express.Request, res: expre
     const code = issueEmailCode(normalizedEmail, 'reset-password', normalizedUserId);
     await sendVerificationCodeEmail(normalizedEmail, 'reset-password', code);
     res.json({ success: true, message: '重置密码验证码已发送至邮箱' } as APIResponse);
-  } catch (error) {
+  } catch (error: any) {
     deleteEmailCode(normalizedEmail, 'reset-password', normalizedUserId);
-    res.status(500).json({ success: false, error: `验证码发送失败：${(error as Error).message}` } as APIResponse);
+    if (error && error.__mockType === 'disabled') {
+      res.status(503).json({ success: false, error: error.message || '邮件服务不可用' } as APIResponse);
+    } else if (error && error.__mockType === 'error') {
+      res.status(500).json({ success: false, error: error.message || '邮件服务异常' } as APIResponse);
+    } else {
+      res.status(500).json({ success: false, error: `验证码发送失败：${(error as Error).message}` } as APIResponse);
+    }
   }
+
+});
+// 邮箱服务模拟接口
+router.post('/admin/mail-service-mock', (req: express.Request, res: express.Response) => {
+  const { enabled, Error: Error } = req.body || {};
+  if (typeof enabled === 'boolean') mailServiceMock.enabled = enabled;
+  if (typeof Error === 'boolean') mailServiceMock.Error = Error;
+  res.json({ success: true, mailServiceMock });
+});
+router.post('/admin/mail-service-mock', (req: express.Request, res: express.Response) => {
+  const { enabled, Error: Error } = req.body || {};
+  if (typeof enabled === 'boolean') mailServiceMock.enabled = enabled;
+  if (typeof Error === 'boolean') mailServiceMock.Error = Error;
+  res.json({ success: true, mailServiceMock });
 });
 
 router.post('/password/reset-by-email', async (req: express.Request, res: express.Response): Promise<void> => {
@@ -538,21 +600,28 @@ router.post('/password/reset-by-email', async (req: express.Request, res: expres
 
 router.post('/login', async (req: express.Request, res: express.Response): Promise<void> => {
   try {
-    const { userId, password } = req.body as { userId: string; password: string };
+    let { userId, password } = req.body as { userId: unknown; password: unknown };
+    // 类型校验，防止注入
+    if (typeof userId !== 'string' || typeof password !== 'string') {
+      res.status(400).json({ success: false, error: 'userId 和 password 必须为字符串' });
+      return;
+    }
+    userId = userId.trim();
+    password = password.trim();
     if (!userId || !password) {
-      res.status(400).json({ success: false, error: 'userId 和 password 必填' } as APIResponse);
+      res.status(400).json({ success: false, error: 'userId 和 password 必填' });
       return;
     }
 
-    const user = await User.findOne({ userId }).lean();
+    const user = await User.findOne({ userId });
     if (!user) {
-      res.status(401).json({ success: false, error: '账号或密码错误' } as APIResponse);
+      res.status(401).json({ success: false, error: '账号或密码错误' });
       return;
     }
-
-    const matched = await bcrypt.compare(password, user.password);
+    
+    const matched = await bcrypt.compare(password as string, user.password);
     if (!matched) {
-      res.status(401).json({ success: false, error: '账号或密码错误' } as APIResponse);
+      res.status(401).json({ success: false, error: '账号或密码错误' });
       return;
     }
 

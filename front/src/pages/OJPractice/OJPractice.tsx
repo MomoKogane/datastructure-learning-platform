@@ -28,7 +28,21 @@ type OjOverrideFormValues = {
   stackLimitKb: number;
 };
 
-const pythonStarterCode = 'import sys\n\n# TODO: write your solution\n\nprint("Hello World!")\n';
+const pythonStarterCode = `import sys\n\ndef main():\n    lines = sys.stdin.read().strip().splitlines()\n    print('DEBUG lines:', lines, file=sys.stderr)\n    if len(lines) < 2:\n        print('输入格式错误', file=sys.stderr)\n        return\n    n, k = map(int, lines[0].split())\n    arr = list(map(int, lines[1].split()))\n    # TODO: 实现算法\n    arr.sort(reverse=True)\n    print(arr[k - 1])\n\nif __name__ == "__main__":\n    main()`;
+
+// 自动生成 starterCode，注释带题目标题
+function buildStarterCodeWithTitle(title: string) {
+  const todo = '// TODO: Write your code here';
+  return {
+    cpp: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    ${todo}\n    return 0;\n}`,
+    java: `import java.io.*;\nimport java.util.*;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n        ${todo}\n    }\n}`,
+    typescript: `import * as fs from "fs";
+\n\nconst tokens = fs.readFileSync(0, "utf8").trim().split(/\\s+/);
+let ptr = 0;
+\n\nfunction next(): string {\n  return tokens[ptr++];\n}\n\nfunction main(): void {\n  ${todo}\n}\n\nmain();`,
+    python: `import sys\n\ndef main():\n    lines = sys.stdin.read().strip().splitlines()\n    print('DEBUG lines:', lines, file=sys.stderr)\n    if len(lines) < 2:\n        print('输入格式错误', file=sys.stderr)\n        return\n    n, k = map(int, lines[0].split())\n    arr = list(map(int, lines[1].split()))\n    ${todo}\n    arr.sort(reverse=True)\n    print(arr[k - 1])\n\nif __name__ == "__main__":\n    main()`
+  };
+}
 
 const resolveStarterCodeByLanguage = (
   starterCode: OjProblem['starterCode'],
@@ -60,6 +74,9 @@ const OJPractice: React.FC = () => {
   const [submissions, setSubmissions] = useState<OjSubmission[]>([]);
   const [catalogTitleMap, setCatalogTitleMap] = useState<Record<string, string>>({});
   const [panel, setPanel] = useState<'records' | 'code'>('records');
+  // 新增：详情弹窗相关 state
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
+  const [currentDetail, setCurrentDetail] = useState<string>('');
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -183,6 +200,9 @@ const OJPractice: React.FC = () => {
       return;
     }
 
+    // 自动生成 starterCode 注释
+    const starterCode = buildStarterCodeWithTitle(values.title);
+
     const payload: OjProblem = {
       title: values.title,
       description: values.description,
@@ -199,12 +219,7 @@ const OJPractice: React.FC = () => {
       testCases: Array.isArray(problem?.testCases) ? problem.testCases : [],
       source: 'custom',
       defaultLanguage: language,
-      starterCode: problem?.starterCode || {
-        cpp: '',
-        java: '',
-        typescript: '',
-        python: pythonStarterCode
-      }
+      starterCode
     };
 
     const result = await apiService.saveOjClassOverride(sectionId, selectedClassId, payload);
@@ -341,7 +356,7 @@ const OJPractice: React.FC = () => {
                   value={language}
                   onChange={(value) => setLanguage(value)}
                   options={[
-                    { label: 'C++', value: 'cpp' },
+                    { label: 'C/C++', value: 'cpp' },
                     { label: 'Java', value: 'java' },
                     { label: 'TypeScript', value: 'typescript' },
                     { label: 'Python', value: 'python' }
@@ -375,18 +390,38 @@ const OJPractice: React.FC = () => {
         width={900}
       >
         {panel === 'records' ? (
-          <Table
-            rowKey="_id"
-            dataSource={submissions}
-            pagination={{ pageSize: 6 }}
-            columns={[
-              { title: '时间', dataIndex: 'createdAt', render: (value: string) => new Date(value).toLocaleString() },
-              { title: '语言', dataIndex: 'language' },
-              { title: '状态', render: (_, record) => <Tag color={record.result.status === 'AC' ? 'green' : 'red'}>{record.result.status}</Tag> },
-              { title: '耗时(ms)', render: (_, record) => record.result.executionTimeMs },
-              { title: '内存(MB)', render: (_, record) => record.result.memoryUsageMb }
-            ]}
-          />
+          <>
+            <Table
+              rowKey="_id"
+              dataSource={submissions}
+              pagination={{ pageSize: 6 }}
+              columns={[
+                { title: '时间', dataIndex: 'createdAt', render: (value: string) => new Date(value).toLocaleString() },
+                { title: '语言', dataIndex: 'language' },
+                { title: '状态', render: (_, record) => <Tag color={record.result.status === 'AC' ? 'green' : 'red'}>{record.result.status}</Tag> },
+                { title: '耗时(ms)', render: (_, record) => record.result.executionTimeMs },
+                { title: '内存(MB)', render: (_, record) => record.result.memoryUsageMb },
+                {
+                  title: '详情',
+                  render: (_, record) => (
+                    <Button size="small" onClick={() => {
+                      setCurrentDetail(record.result.detail || '无详情');
+                      setDetailModalOpen(true);
+                    }}>查看详情</Button>
+                  )
+                }
+              ]}
+            />
+            <Modal
+              open={detailModalOpen}
+              title="评测详情"
+              onCancel={() => setDetailModalOpen(false)}
+              footer={null}
+              width={700}
+            >
+              <pre style={{ maxHeight: 400, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-all', background: '#f6f6f6', padding: 12 }}>{currentDetail}</pre>
+            </Modal>
+          </>
         ) : (
           <Card size="small" title="当前提交代码">
             <pre className="oj-code-preview">{code}</pre>

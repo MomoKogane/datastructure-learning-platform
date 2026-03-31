@@ -4,6 +4,7 @@ import { mkdtemp, rm, writeFile } from 'fs/promises';
 import { tmpdir } from 'os';
 import path from 'path';
 import { spawn } from 'child_process';
+import { runProcessInDocker } from '../utils/sandbox';
 import type { APIResponse } from '../types';
 import User from '../models/User';
 import TeachingClass from '../models/TeachingClass';
@@ -23,7 +24,7 @@ interface AuthRequest extends express.Request {
   };
 }
 
-const JWT_SECRET = process.env.JWT_SECRET ?? '';
+const JWT_SECRET = process.env.JWT_SECRET || 'dslp-dev-secret';
 
 type JudgeStatus = 'AC' | 'WA' | 'CE' | 'RE' | 'TLE' | 'MLE' | 'OLE' | 'PE';
 
@@ -83,24 +84,10 @@ const ensureStudentProgress = async (
 ): Promise<void> => {
   const student = await User.findOne({ userId, role: 'student' });
   if (!student) {
-    return;
+    // student 不存在时直接返回或抛出异常
+	return;
   }
-
-  let found = student.sectionProgress.find((item) => item.sectionId === sectionId);
-  if (!found) {
-    student.sectionProgress.push({
-      sectionId,
-      theoryCompleted: false,
-      quizCompleted: false,
-      codingCompleted: false,
-      ojVisited: false
-    });
-    found = student.sectionProgress[student.sectionProgress.length - 1];
-  }
-
-  updater(found);
-  await student.save();
-};
+}
 
 const validateProblemPayload = (problem: Partial<OjProblemPayload>): string | null => {
   const requiredTextFields: Array<keyof OjProblemPayload> = [
@@ -183,23 +170,28 @@ const resolveCompilerProfile = (compilerRaw: string): {
       compileArgs: ['-O2', '-std=c++17']
     };
   }
-
-  if (compiler.includes('clang') && !compiler.includes('clang++')) {
+  if (compiler.includes('g++')) {
+    return {
+      command: 'g++',
+      sourceExt: '.cpp',
+      compileArgs: ['-O2', '-std=c++17']
+    };
+  }
+  if (compiler.includes('clang')) {
     return {
       command: 'clang',
       sourceExt: '.c',
       compileArgs: ['-O2', '-std=c11']
     };
   }
-
-  if (compiler.includes('gcc') && !compiler.includes('g++')) {
+  if (compiler.includes('gcc')) {
     return {
       command: 'gcc',
       sourceExt: '.c',
       compileArgs: ['-O2', '-std=c11']
     };
   }
-
+  // 默认 C++ 用 g++
   return {
     command: 'g++',
     sourceExt: '.cpp',
@@ -294,110 +286,55 @@ const judgeCppSubmission = async (
 }> => {
   const compilerProfile = resolveCompilerProfile(compilerRaw);
   const workDir = await mkdtemp(path.join(tmpdir(), 'dslp-oj-'));
-
   try {
     const sourcePath = path.join(workDir, `main${compilerProfile.sourceExt}`);
-    const executablePath = path.join(workDir, process.platform === 'win32' ? 'main.exe' : 'main');
+    const executablePath = path.join(workDir, 'main');
     await writeFile(sourcePath, code, 'utf8');
-
-    const compileResult = await runProcess(
-      compilerProfile.command,
-      [...compilerProfile.compileArgs, sourcePath, '-o', executablePath],
-      { cwd: workDir, timeoutMs: 30000 }
-    );
-
+    // 编译
+    const compileResult = await runProcessInDocker({
+      image: 'dslp-oj-cpp',
+      command: [compilerProfile.command, ...compilerProfile.compileArgs, `main${compilerProfile.sourceExt}`, '-o', 'main'],
+      workDir,
+      timeoutMs: 30000
+    });
     if (compileResult.timedOut) {
-      return {
-        status: 'CE',
-        executionTimeMs: 0,
-        memoryUsageMb: 0,
-        detail: `Compile timeout with ${compilerProfile.command}`
-      };
+      return { status: 'CE', executionTimeMs: 0, memoryUsageMb: 0, detail: `Compile timeout with ${compilerProfile.command}` };
     }
-
     if (compileResult.exitCode !== 0) {
-      return {
-        status: 'CE',
-        executionTimeMs: 0,
-        memoryUsageMb: 0,
-        detail: compileResult.stderr?.trim() || 'Compilation failed'
-      };
+      return { status: 'CE', executionTimeMs: 0, memoryUsageMb: 0, detail: compileResult.stderr?.trim() || 'Compilation failed' };
     }
-
+    // 评测
     const testCases = Array.isArray(problem.testCases) ? problem.testCases : [];
     const perCaseTimeLimitMs = Math.max(100, Number(problem.constraints?.timeLimitMs || 1000));
     let accumulatedTimeMs = 0;
-
     for (let index = 0; index < testCases.length; index += 1) {
       const currentCase = testCases[index];
       const caseInputRaw = String(currentCase?.input || '');
       const caseInput = caseInputRaw.trim() === '无' ? '' : caseInputRaw;
       const expectedOutput = normalizeOutput(String(currentCase?.output || ''));
-
       const startedAt = Date.now();
-      const executeResult = await runProcess(
-        executablePath,
-        [],
-        {
-          cwd: workDir,
-          stdin: caseInput,
-          timeoutMs: perCaseTimeLimitMs
-        }
-      );
+      const executeResult = await runProcessInDocker({
+        image: 'dslp-oj-cpp',
+        command: ['./main'],
+        workDir,
+        stdin: caseInput,
+        timeoutMs: perCaseTimeLimitMs
+      });
       accumulatedTimeMs += Date.now() - startedAt;
-
       if (executeResult.timedOut) {
-        return {
-          status: 'TLE',
-          executionTimeMs: accumulatedTimeMs,
-          memoryUsageMb: 0,
-          detail: `Time limit exceeded on test case #${index + 1}`
-        };
+        return { status: 'TLE', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Time limit exceeded on test case #${index + 1}` };
       }
-
       if (executeResult.exitCode !== 0) {
-        return {
-          status: 'RE',
-          executionTimeMs: accumulatedTimeMs,
-          memoryUsageMb: 0,
-          detail: `Runtime error on test case #${index + 1}: ${(executeResult.stderr || '').trim() || `exit code ${executeResult.exitCode}`}`
-        };
+        return { status: 'RE', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Runtime error on test case #${index + 1}: ${(executeResult.stderr || '').trim() || `exit code ${executeResult.exitCode}`}` };
       }
-
       const actualOutput = normalizeOutput(executeResult.stdout || '');
       if (actualOutput !== expectedOutput) {
-        return {
-          status: 'WA',
-          executionTimeMs: accumulatedTimeMs,
-          memoryUsageMb: 0,
-          detail: `Wrong answer on test case #${index + 1}. Expected: ${expectedOutput.slice(0, 120)} | Got: ${actualOutput.slice(0, 120)}`
-        };
+        return { status: 'WA', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Wrong answer on test case #${index + 1}. Expected: ${expectedOutput.slice(0, 120)} | Got: ${actualOutput.slice(0, 120)}` };
       }
     }
-
-    return {
-      status: 'AC',
-      executionTimeMs: accumulatedTimeMs,
-      memoryUsageMb: 0,
-      detail: `All ${testCases.length} test cases passed.`
-    };
+    return { status: 'AC', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `All ${testCases.length} test cases passed.` };
   } catch (error) {
-    const errorCode = (error as NodeJS.ErrnoException)?.code;
-    if (errorCode === 'ENOENT') {
-      return {
-        status: 'CE',
-        executionTimeMs: 0,
-        memoryUsageMb: 0,
-        detail: `Compiler not found: ${resolveCompilerProfile(compilerRaw).command}`
-      };
-    }
-
-    return {
-      status: 'RE',
-      executionTimeMs: 0,
-      memoryUsageMb: 0,
-      detail: `Judge runtime failure: ${error instanceof Error ? error.message : 'Unknown error'}`
-    };
+    return { status: 'RE', executionTimeMs: 0, memoryUsageMb: 0, detail: `Judge runtime failure: ${error instanceof Error ? error.message : 'Unknown error'}` };
   } finally {
     await rm(workDir, { recursive: true, force: true });
   }
@@ -450,120 +387,55 @@ const judgeJavaSubmission = async (
   memoryUsageMb: number;
   detail: string;
 }> => {
-  const javaRunner = await resolveAvailableJavaRunner();
-  if (!javaRunner) {
-    return {
-      status: 'CE',
-      executionTimeMs: 0,
-      memoryUsageMb: 0,
-      detail: 'Java runtime not found. Please install JDK and make sure java/javac are in PATH.'
-    };
-  }
-
   const workDir = await mkdtemp(path.join(tmpdir(), 'dslp-oj-java-'));
-
   try {
     const sourcePath = path.join(workDir, 'Main.java');
     await writeFile(sourcePath, code, 'utf8');
-
-    const compileResult = await runProcess(
-      javaRunner.javac,
-      [sourcePath],
-      { cwd: workDir, timeoutMs: 30000 }
-    );
-
+    // 编译
+    const compileResult = await runProcessInDocker({
+      image: 'dslp-oj-java',
+      command: ['javac', 'Main.java'],
+      workDir,
+      timeoutMs: 30000
+    });
     if (compileResult.timedOut) {
-      return {
-        status: 'CE',
-        executionTimeMs: 0,
-        memoryUsageMb: 0,
-        detail: 'Compile timeout with javac'
-      };
+      return { status: 'CE', executionTimeMs: 0, memoryUsageMb: 0, detail: 'Compile timeout with javac' };
     }
-
     if (compileResult.exitCode !== 0) {
-      return {
-        status: 'CE',
-        executionTimeMs: 0,
-        memoryUsageMb: 0,
-        detail: compileResult.stderr?.trim() || 'Java compilation failed'
-      };
+      return { status: 'CE', executionTimeMs: 0, memoryUsageMb: 0, detail: compileResult.stderr?.trim() || 'Java compilation failed' };
     }
-
+    // 评测
     const testCases = Array.isArray(problem.testCases) ? problem.testCases : [];
     const perCaseTimeLimitMs = Math.max(100, Number(problem.constraints?.timeLimitMs || 1000));
     let accumulatedTimeMs = 0;
-
     for (let index = 0; index < testCases.length; index += 1) {
       const currentCase = testCases[index];
       const caseInputRaw = String(currentCase?.input || '');
       const caseInput = caseInputRaw.trim() === '无' ? '' : caseInputRaw;
       const expectedOutput = normalizeOutput(String(currentCase?.output || ''));
-
       const startedAt = Date.now();
-      const executeResult = await runProcess(
-        javaRunner.java,
-        ['-cp', workDir, 'Main'],
-        {
-          cwd: workDir,
-          stdin: caseInput,
-          timeoutMs: perCaseTimeLimitMs
-        }
-      );
+      const executeResult = await runProcessInDocker({
+        image: 'dslp-oj-java',
+        command: ['java', 'Main'],
+        workDir,
+        stdin: caseInput,
+        timeoutMs: perCaseTimeLimitMs
+      });
       accumulatedTimeMs += Date.now() - startedAt;
-
       if (executeResult.timedOut) {
-        return {
-          status: 'TLE',
-          executionTimeMs: accumulatedTimeMs,
-          memoryUsageMb: 0,
-          detail: `Time limit exceeded on test case #${index + 1}`
-        };
+        return { status: 'TLE', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Time limit exceeded on test case #${index + 1}` };
       }
-
       if (executeResult.exitCode !== 0) {
-        return {
-          status: 'RE',
-          executionTimeMs: accumulatedTimeMs,
-          memoryUsageMb: 0,
-          detail: `Runtime error on test case #${index + 1}: ${(executeResult.stderr || '').trim() || `exit code ${executeResult.exitCode}`}`
-        };
+        return { status: 'RE', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Runtime error on test case #${index + 1}: ${(executeResult.stderr || '').trim() || `exit code ${executeResult.exitCode}`}` };
       }
-
       const actualOutput = normalizeOutput(executeResult.stdout || '');
       if (actualOutput !== expectedOutput) {
-        return {
-          status: 'WA',
-          executionTimeMs: accumulatedTimeMs,
-          memoryUsageMb: 0,
-          detail: `Wrong answer on test case #${index + 1}. Expected: ${expectedOutput.slice(0, 120)} | Got: ${actualOutput.slice(0, 120)}`
-        };
+        return { status: 'WA', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Wrong answer on test case #${index + 1}. Expected: ${expectedOutput.slice(0, 120)} | Got: ${actualOutput.slice(0, 120)}` };
       }
     }
-
-    return {
-      status: 'AC',
-      executionTimeMs: accumulatedTimeMs,
-      memoryUsageMb: 0,
-      detail: `All ${testCases.length} test cases passed.`
-    };
+    return { status: 'AC', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `All ${testCases.length} test cases passed.` };
   } catch (error) {
-    const errorCode = (error as NodeJS.ErrnoException)?.code;
-    if (errorCode === 'ENOENT') {
-      return {
-        status: 'CE',
-        executionTimeMs: 0,
-        memoryUsageMb: 0,
-        detail: 'Java runtime not found: java/javac'
-      };
-    }
-
-    return {
-      status: 'RE',
-      executionTimeMs: 0,
-      memoryUsageMb: 0,
-      detail: `Judge runtime failure: ${error instanceof Error ? error.message : 'Unknown error'}`
-    };
+    return { status: 'RE', executionTimeMs: 0, memoryUsageMb: 0, detail: `Judge runtime failure: ${error instanceof Error ? error.message : 'Unknown error'}` };
   } finally {
     await rm(workDir, { recursive: true, force: true });
   }
@@ -624,97 +496,97 @@ const judgePythonSubmission = async (
   memoryUsageMb: number;
   detail: string;
 }> => {
-  const pythonRunner = await resolveAvailablePythonRunner(compilerRaw);
-  if (!pythonRunner) {
-    return {
-      status: 'CE',
-      executionTimeMs: 0,
-      memoryUsageMb: 0,
-      detail: 'Python interpreter not found. Tried python3/python/py -3.'
-    };
-  }
-
-  const pythonCommand = pythonRunner.command;
   const workDir = await mkdtemp(path.join(tmpdir(), 'dslp-oj-py-'));
-
   try {
     const scriptPath = path.join(workDir, 'main.py');
     await writeFile(scriptPath, code, 'utf8');
-
     const testCases = Array.isArray(problem.testCases) ? problem.testCases : [];
     const perCaseTimeLimitMs = Math.max(100, Number(problem.constraints?.timeLimitMs || 1000));
     let accumulatedTimeMs = 0;
-
     for (let index = 0; index < testCases.length; index += 1) {
       const currentCase = testCases[index];
       const caseInputRaw = String(currentCase?.input || '');
       const caseInput = caseInputRaw.trim() === '无' ? '' : caseInputRaw;
       const expectedOutput = normalizeOutput(String(currentCase?.output || ''));
-
       const startedAt = Date.now();
-      const executeResult = await runProcess(
-        pythonCommand,
-        [...pythonRunner.baseArgs, scriptPath],
-        {
-          cwd: workDir,
-          stdin: caseInput,
-          timeoutMs: perCaseTimeLimitMs
-        }
-      );
+      const executeResult = await runProcessInDocker({
+        image: 'dslp-oj-python',
+        command: ['python3', 'main.py'],
+        workDir,
+        stdin: caseInput,
+        timeoutMs: perCaseTimeLimitMs
+      });
       accumulatedTimeMs += Date.now() - startedAt;
-
       if (executeResult.timedOut) {
-        return {
-          status: 'TLE',
-          executionTimeMs: accumulatedTimeMs,
-          memoryUsageMb: 0,
-          detail: `Time limit exceeded on test case #${index + 1}`
-        };
+        return { status: 'TLE', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Time limit exceeded on test case #${index + 1}` };
       }
-
       if (executeResult.exitCode !== 0) {
+        // 详细记录stderr内容，便于排查
         return {
           status: 'RE',
           executionTimeMs: accumulatedTimeMs,
           memoryUsageMb: 0,
-          detail: `Runtime error on test case #${index + 1}: ${(executeResult.stderr || '').trim() || `exit code ${executeResult.exitCode}`}`
+          detail: `Runtime error on test case #${index + 1}:\nSTDERR:\n${(executeResult.stderr || '').trim()}\nSTDOUT:\n${(executeResult.stdout || '').trim()}\nINPUT:\n${caseInput}`
         };
       }
-
       const actualOutput = normalizeOutput(executeResult.stdout || '');
       if (actualOutput !== expectedOutput) {
-        return {
-          status: 'WA',
-          executionTimeMs: accumulatedTimeMs,
-          memoryUsageMb: 0,
-          detail: `Wrong answer on test case #${index + 1}. Expected: ${expectedOutput.slice(0, 120)} | Got: ${actualOutput.slice(0, 120)}`
-        };
+        return { status: 'WA', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Wrong answer on test case #${index + 1}. Expected: ${expectedOutput.slice(0, 120)} | Got: ${actualOutput.slice(0, 120)}` };
       }
     }
-
-    return {
-      status: 'AC',
-      executionTimeMs: accumulatedTimeMs,
-      memoryUsageMb: 0,
-      detail: `All ${testCases.length} test cases passed.`
-    };
+    return { status: 'AC', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `All ${testCases.length} test cases passed.` };
   } catch (error) {
-    const errorCode = (error as NodeJS.ErrnoException)?.code;
-    if (errorCode === 'ENOENT') {
-      return {
-        status: 'CE',
-        executionTimeMs: 0,
-        memoryUsageMb: 0,
-        detail: `Python interpreter not found: ${pythonCommand}`
-      };
-    }
+    return { status: 'RE', executionTimeMs: 0, memoryUsageMb: 0, detail: `Judge runtime failure: ${error instanceof Error ? error.message : 'Unknown error'}` };
+  } finally {
+    await rm(workDir, { recursive: true, force: true });
+  }
+};
 
-    return {
-      status: 'RE',
-      executionTimeMs: 0,
-      memoryUsageMb: 0,
-      detail: `Judge runtime failure: ${error instanceof Error ? error.message : 'Unknown error'}`
-    };
+// TypeScript 沙箱评测
+const judgeTypeScriptSubmission = async (
+  code: string,
+  problem: OjProblemPayload
+): Promise<{
+  status: JudgeStatus;
+  executionTimeMs: number;
+  memoryUsageMb: number;
+  detail: string;
+}> => {
+  const workDir = await mkdtemp(path.join(tmpdir(), 'dslp-oj-ts-'));
+  try {
+    const scriptPath = path.join(workDir, 'main.ts');
+    await writeFile(scriptPath, code, 'utf8');
+    const testCases = Array.isArray(problem.testCases) ? problem.testCases : [];
+    const perCaseTimeLimitMs = Math.max(100, Number(problem.constraints?.timeLimitMs || 1000));
+    let accumulatedTimeMs = 0;
+    for (let index = 0; index < testCases.length; index += 1) {
+      const currentCase = testCases[index];
+      const caseInputRaw = String(currentCase?.input || '');
+      const caseInput = caseInputRaw.trim() === '无' ? '' : caseInputRaw;
+      const expectedOutput = normalizeOutput(String(currentCase?.output || ''));
+      const startedAt = Date.now();
+      const executeResult = await runProcessInDocker({
+        image: 'dslp-oj-ts',
+        command: ['ts-node', 'main.ts'],
+        workDir,
+        stdin: caseInput,
+        timeoutMs: perCaseTimeLimitMs
+      });
+      accumulatedTimeMs += Date.now() - startedAt;
+      if (executeResult.timedOut) {
+        return { status: 'TLE', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Time limit exceeded on test case #${index + 1}` };
+      }
+      if (executeResult.exitCode !== 0) {
+        return { status: 'RE', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Runtime error on test case #${index + 1}: ${(executeResult.stderr || '').trim() || `exit code ${executeResult.exitCode}`}` };
+      }
+      const actualOutput = normalizeOutput(executeResult.stdout || '');
+      if (actualOutput !== expectedOutput) {
+        return { status: 'WA', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `Wrong answer on test case #${index + 1}. Expected: ${expectedOutput.slice(0, 120)} | Got: ${actualOutput.slice(0, 120)}` };
+      }
+    }
+    return { status: 'AC', executionTimeMs: accumulatedTimeMs, memoryUsageMb: 0, detail: `All ${testCases.length} test cases passed.` };
+  } catch (error) {
+    return { status: 'RE', executionTimeMs: 0, memoryUsageMb: 0, detail: `Judge runtime failure: ${error instanceof Error ? error.message : 'Unknown error'}` };
   } finally {
     await rm(workDir, { recursive: true, force: true });
   }
@@ -726,7 +598,7 @@ const authMiddleware = (req: AuthRequest, res: express.Response, next: express.N
     : null;
 
   if (!token) {
-    res.status(401).json({ success: false, error: 'Unauthorized: missing token' } as APIResponse);
+    res.status(401).json({ success: false, error: 'Unauthorized: missing token' });
     return;
   }
 
@@ -740,13 +612,14 @@ const authMiddleware = (req: AuthRequest, res: express.Response, next: express.N
       'name' in payload
     ) {
       req.authUser = payload as { userId: string; role: Role; name: string };
-      next();
+      return next();
     } else {
-      res.status(401).json({ success: false, error: 'Unauthorized: invalid token payload' } as APIResponse);
+      res.status(401).json({ success: false, error: 'Unauthorized: invalid token payload' });
+      return;
     }
-    next();
   } catch (_error) {
-    res.status(401).json({ success: false, error: 'Unauthorized: invalid token' } as APIResponse);
+    res.status(401).json({ success: false, error: 'Unauthorized: invalid token' });
+    return;
   }
 };
 
@@ -809,7 +682,7 @@ router.get('/problem/:sectionId', authMiddleware, async (req: AuthRequest, res: 
     });
   }
 
-  res.json({
+  res.status(200).json({
     success: true,
     data: {
       sectionId,
@@ -918,18 +791,23 @@ router.post('/submit/:sectionId', authMiddleware, async (req: AuthRequest, res: 
   const defaultProblem = await contentRepository.getDefaultOjProblem(sectionId) as OjProblemPayload;
   const effectiveProblem = override?.problem || defaultProblem;
 
-  const result = language === 'cpp'
-    ? await judgeCppSubmission(code, compiler, effectiveProblem)
-    : language === 'java'
-      ? await judgeJavaSubmission(code, effectiveProblem)
-    : language === 'python'
-      ? await judgePythonSubmission(code, compiler, effectiveProblem)
-      : {
-        status: 'CE' as JudgeStatus,
-        executionTimeMs: 0,
-        memoryUsageMb: 0,
-        detail: '当前仅支持 C/C++ 与 Python 评测通路。'
-      };
+  let result;
+  if (language === 'cpp') {
+    result = await judgeCppSubmission(code, compiler, effectiveProblem);
+  } else if (language === 'java') {
+    result = await judgeJavaSubmission(code, effectiveProblem);
+  } else if (language === 'python') {
+    result = await judgePythonSubmission(code, compiler, effectiveProblem);
+  } else if (language === 'typescript') {
+    result = await judgeTypeScriptSubmission(code, effectiveProblem);
+  } else {
+    result = {
+      status: 'CE' as JudgeStatus,
+      executionTimeMs: 0,
+      memoryUsageMb: 0,
+      detail: '当前仅支持 C/C++、Python、Java、TypeScript 评测通路。'
+    };
+  }
 
   const submission = await OjSubmission.create({
     userId: currentUser.userId,
@@ -975,7 +853,7 @@ router.get('/submissions/:sectionId', authMiddleware, async (req: AuthRequest, r
     }
   }));
 
-  res.json({ success: true, data: normalizedList } as APIResponse);
+  res.status(200).json({ success: true, data: normalizedList } as APIResponse);
 });
 
-export default router;
+module.exports = router;
